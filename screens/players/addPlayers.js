@@ -23,6 +23,14 @@ const AddPlayers = () => {
   const [addHeight, setAddHeight] = useState("");
   const [addFoot, setAddFoot] = useState("");
   const [addPosition, setAddPosition] = useState("");
+  const [addGoals, setAddGoals] = useState("");
+  const [addAssists, setAddAssists] = useState("");
+  const [addSheets, setAddSheets] = useState("");
+  const [addAttacking, setAddAttacking] = useState("");
+  const [addDefending, setAddDefending] = useState("");
+  const [addDribbling, setAddDribbling] = useState("");
+  const [addPassing, setAddPassing] = useState("");
+  const [addPhysical, setAddPhysical] = useState("");
   const navigation = useNavigation();
   useEffect(() => {
     firebase
@@ -43,14 +51,24 @@ const AddPlayers = () => {
     playerRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
       const players = [];
       querySnapshot.forEach((doc) => {
-        const { pName,age,height,foot,position } = doc.data();
+        const { pName,age,height,foot,position,goals,assists,sheets, attacking,dribbling,
+            defending,
+            passing , physical} = doc.data();
         players.push({
           id: doc.id,
           pName,
           age,
           height,
           foot,
-          position
+          position,
+          goals,
+          assists,
+          sheets,
+          attacking,
+          dribbling,
+          defending,
+          passing,
+          physical
         });
       });
       setPlayers(players);
@@ -68,7 +86,14 @@ const AddPlayers = () => {
         height:addHeight,
         foot:addFoot,
         position:addPosition,
-       
+        goals:addGoals,
+        assists:addAssists,
+        sheets:addSheets,
+        attacking:addAttacking,
+        dribbling:addDribbling,
+        defending:addDefending,
+        passing:addPassing,
+       physical:addPhysical,
         createdAt: timestamp,
       };
       playerRef
@@ -79,6 +104,14 @@ const AddPlayers = () => {
           setAddHeight("")
           setAddFoot("")
           setAddPosition("")
+          setAddGoals("")
+          setAddAssists("")
+          setAddSheets("")
+          setAddDefending("")
+          setAddPassing("")
+          setAddAttacking("")
+          setAddDribbling("")
+          setAddPhysical("")
           Keyboard.dismiss();
         })
         .catch((error) => {
@@ -99,6 +132,7 @@ const AddPlayers = () => {
         </View>
         <Text style={styles.title}>Add New Players</Text>
 
+        <Text style={styles.title}>Personal Info</Text>
 
         <TextInput
               style={styles.input}
@@ -150,6 +184,91 @@ const AddPlayers = () => {
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
+
+<Text style={styles.title}>Stats</Text>
+
+<TextInput
+              style={styles.input}
+              placeholder="Goals "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(goals) => setAddGoals(goals)}
+              value={addGoals}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Assists "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(assists) => setAddAssists(assists)}
+              value={addAssists}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Clean Sheets "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(sheets) => setAddSheets(sheets)}
+              value={addSheets}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<Text style={styles.title}>Skills</Text>
+
+<TextInput
+              style={styles.input}
+              placeholder="Attacking "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(attacking) => setAddAttacking(attacking)}
+              value={addAttacking}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Defending "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(defending) => setAddDefending(defending)}
+              value={addDefending}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Dribbling "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(dribbling) => setAddDribbling(dribbling)}
+              value={addDribbling}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Passing "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(passing) => setAddPassing(passing)}
+              value={addPassing}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Physical "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(physical) => setAddPhysical(physical)}
+              value={addPhysical}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
 
         <TouchableOpacity
           style={styles.addButton}

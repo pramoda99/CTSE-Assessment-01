@@ -24,6 +24,14 @@ const PlayersHome = () => {
   const [addHeight, setAddHeight] = useState("");
   const [addFoot, setAddFoot] = useState("");
   const [addPosition, setAddPosition] = useState("");
+  const [addGoals, setAddGoals] = useState("");
+  const [addAssists, setAddAssists] = useState("");
+  const [addSheets, setAddSheets] = useState("");
+  const [addAttacking, setAddAttacking] = useState("");
+  const [addDefending, setAddDefending] = useState("");
+  const [addDribbling, setAddDribbling] = useState("");
+  const [addPassing, setAddPassing] = useState("");
+  const [addPhysical, setAddPhysical] = useState("");
   const navigation = useNavigation();
   useEffect(() => {
     firebase
@@ -44,14 +52,24 @@ const PlayersHome = () => {
     playerRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
       const players = [];
       querySnapshot.forEach((doc) => {
-        const { pName,age,height,foot,position } = doc.data();
+        const { pName,age,height,foot,position,goals,assists,sheets, attacking,dribbling,
+            defending,
+            passing , physical } = doc.data();
         players.push({
            id: doc.id,
           pName,
           age,
           height,
           foot,
-          position
+          position,
+          goals,
+          assists,
+          sheets,
+          attacking,
+          dribbling,
+          defending,
+          passing,
+          physical
         });
       });
       setPlayers(players);
@@ -79,6 +97,14 @@ const PlayersHome = () => {
         height:addHeight,
         foot:addFoot,
         position:addPosition,
+        goals:addGoals,
+        assists:addAssists,
+        sheets:addSheets,
+        attacking:addAttacking,
+        dribbling:addDribbling,
+        defending:addDefending,
+        passing:addPassing,
+       physical:addPhysical,
         createdAt: timestamp,
       };
       playerRef
@@ -89,6 +115,14 @@ const PlayersHome = () => {
           setAddHeight("")
           setAddFoot("")
           setAddPosition("")
+          setAddGoals("")
+          setAddAssists("")
+          setAddSheets("")
+          setAddDefending("")
+          setAddPassing("")
+          setAddAttacking("")
+          setAddDribbling("")
+          setAddPhysical("")
           Keyboard.dismiss();
         })
         .catch((error) => {
@@ -148,10 +182,42 @@ const PlayersHome = () => {
                 <View style={styles.innerContainer}>
                   <Text style={styles.itemHeading}>
                     {item.pName[0].toUpperCase() + item.pName.slice(1)}
+                    </Text>
+                    <Text style={styles.itemHeading}>
                      {item.age[1]+ item.age.slice(1)}
+                     </Text>
+                     <Text style={styles.itemHeading}>
                       {item.height[2]+ item.height.slice(1) }
+                      </Text>
+                      <Text style={styles.itemHeading}>
                        {item.foot[3]}
+                       </Text>
+                       <Text style={styles.itemHeading}>
                         {item.position[4]+ item.position.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.goals[4]+ item.goals.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.assists[6]+ item.assists.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.sheets[7]+ item.sheets.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.attacking[8]+ item.attacking.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.defending[9]+ item.defending.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.dribbling[10]+ item.dribbling.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.passing[11]+ item.passing.slice(1)}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.physical[12]+ item.physical.slice(1)}
                   </Text>
                 </View>
               </Pressable>
