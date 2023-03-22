@@ -9,6 +9,9 @@ import Header from "./components/header";
 import Home from "./screens/home";
 import Detail from "./screens/detail";
 import Add from "./screens/add";
+import Main from "./screens/main";
+import PlayersHome from "./screens/players/playersHome";
+import AddPlayers from "./screens/players/addPlayers";
 
 const Stack = createStackNavigator();
 
@@ -72,6 +75,23 @@ function App() {
     //   headerShow: false,
     // }}
     >
+
+<Stack.Screen
+        name="Main"
+        component={Main}
+        options={{
+          headerTitle: () => <Header name="Main" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#00e4d0",
+            shadowColor: "#000",
+            elevation: 25,
+          },
+        }}
+      />
+
       <Stack.Screen
         name="Home"
         component={Home}
@@ -118,6 +138,39 @@ function App() {
           },
         }}
       />
+
+<Stack.Screen
+        name="AddPlayers"
+        component={AddPlayers}
+        options={{
+          headerTitle: () => <Header name="AddPlayers" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#00e4d0",
+            shadowColor: "#000",
+            elevation: 25,
+          },
+        }}
+      />
+
+<Stack.Screen
+        name="PlayersHome"
+        component={PlayersHome}
+        options={{
+          headerTitle: () => <Header name="PlayersHome" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#00e4d0",
+            shadowColor: "#000",
+            elevation: 25,
+          },
+        }}
+      />
+
     </Stack.Navigator>
   );
 }
