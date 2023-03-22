@@ -17,6 +17,7 @@ import MatchHome from "./screens/match/matchHome";
 import AddPlayers from "./screens/players/addPlayers";
 import DetailPlayers from "./screens/players/detailPlayers";
 import PlayersHome from "./screens/players/playersHome";
+import ViewPlayers from "./screens/players/viewPlayers";
 
 // squad component...........................................
 import AddSquad from "./screens/squad/addSquad";
@@ -193,6 +194,22 @@ function App() {
         component={PlayersHome}
         options={{
           headerTitle: () => <Header name="PlayersHome" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#00e4d0",
+            shadowColor: "#000",
+            elevation: 25,
+          },
+        }}
+      />
+
+<Stack.Screen
+        name="ViewPlayers"
+        component={ViewPlayers}
+        options={{
+          headerTitle: () => <Header name="ViewPlayers" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
