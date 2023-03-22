@@ -5,15 +5,33 @@ import { useNavigation } from "@react-navigation/native";
 
 const DetailSquad = ({ route }) => {
   const squadRef = firebase.firestore().collection("squad");
-  const [textHeading, onChangeHeadingText] = useState(route.params.item.heading);
+  const [textSName, onChangeSNameText] = useState(route.params.item.sName);
+  const [textFormation, onChangeFormationText] = useState(route.params.item.formation);
+  const [textFSquad, onChangeFSquadText] = useState(route.params.item.fSquad);
+  const [textAttacking, onChangeAttackingText] = useState(route.params.item.attacking);
+  const [textDefending, onChangeDefendingText] = useState(route.params.item.defending);
+  const [textCaptain, onChangeCaptainText] = useState(route.params.item.captain);
+  const [textFTaker, onChangeFTakerText] = useState(route.params.item.fTaker);
+  const [textPTaker, onChangePTakerText] = useState(route.params.item.pTaker);
+  const [textLCTaker, onChangeLCTakerText] = useState(route.params.item.leftTaker);
+  const [textRCTaker, onChangeRCTakerText] = useState(route.params.item.rightTaker);
   const navigation = useNavigation();
 
   const updateSquad = () => {
-    if (textHeading && textHeading.length > 0) {
+    if (textSName && textSName.length > 0) {
       squadRef
         .doc(route.params.item.id)
         .update({
-          heading: textHeading,
+          sName: textSName,
+          formation: textFormation,
+          fSquad: textFSquad,
+          attacking: textAttacking,
+          defending: textDefending,
+          captain: textCaptain,
+          fTaker: textFTaker,
+          pTaker: textPTaker,
+          leftTaker: textLCTaker,
+          rightTaker: textRCTaker,
         })
         .then(() => {
           navigation.navigate("SquadHome");
@@ -26,12 +44,83 @@ const DetailSquad = ({ route }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Update Squad</Text>
+      
       <TextInput
-        style={styles.textField}
-        onChangeText={onChangeHeadingText}
-        value={textHeading}
-        // placeholder="Update "
-      />
+      style={styles.textField}
+      onChangeText={onChangeSNameText}
+      value={textSName}
+      readOnly
+      
+    />
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeFormationText}
+      value={textFormation}
+      
+      textContentType="number"
+    /> 
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeFSquadText}
+      value={textFSquad}
+      
+    /> 
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeAttackingText}
+      value={textAttacking}
+      
+    />
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeDefendingText}
+      value={textDefending}
+      
+    />
+{/* 
+<Text style={styles.title}>Stats</Text> */}
+
+<TextInput
+              style={styles.textField}
+              onChangeText={onChangeCaptainText}
+              value={textCaptain}
+              
+            />
+
+<TextInput
+              style={styles.textField}
+              onChangeText={onChangeFTakerText}
+              value={textFTaker}
+              
+            />
+
+<TextInput
+              style={styles.textField}
+              onChangeText={onChangePTakerText}
+              value={textPTaker}
+              
+            />
+{/* 
+<Text style={styles.title}>Skills</Text> */}
+
+<TextInput
+              style={styles.textField}
+              onChangeText={onChangeLCTakerText}
+              value={textLCTaker}
+              
+            />
+
+<TextInput
+              style={styles.textField}
+              onChangeText={onChangeRCTakerText}
+              value={textRCTaker}
+              
+            />
 
       <Pressable
         style={styles.buttonUpdate}
