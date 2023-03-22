@@ -14,11 +14,20 @@ import {
   import { FontAwesome } from "@expo/vector-icons";
   import { useNavigation } from "@react-navigation/native";
   
-  const AddSquad = () => {
+  const AddSquads = () => {
     const [name, setName] = useState("");
     const [squad, setSquad] = useState([]);
     const squadRef = firebase.firestore().collection("squad");
-    const [addData, setAddData] = useState("");
+    const [addSName, setAddSName] = useState("");
+    const [addFormation, setAddFormation] = useState("");
+    const [addFSquad, setAddFSquad] = useState("");
+    const [addAttacking, setAddAttacking] = useState("");
+    const [addDefending, setAddDefending] = useState("");
+    const [addCaptain, setAddCaptain] = useState("");
+    const [addFTaker, setAddFTaker] = useState("");
+    const [addPTaker, setAddPTaker] = useState("");
+    const [addLCTaker, setAddLCTaker] = useState("");
+    const [addRCTaker, setAddRCTaker] = useState("");
     const navigation = useNavigation();
     useEffect(() => {
       firebase
@@ -39,10 +48,19 @@ import {
       squadRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
         const squad = [];
         querySnapshot.forEach((doc) => {
-          const { heading } = doc.data();
+          const { sName,formation,fSquad,attacking,defending,captain,fTaker,pTaker,leftTaker,rightTaker } = doc.data();
           squad.push({
             id: doc.id,
-            heading,
+            sName,
+            formation,
+            fSquad,
+            attacking,
+            defending,
+            captain,
+            fTaker,
+            pTaker,
+            leftTaker,
+            rightTaker
           });
         });
         setSquad(squad);
@@ -52,16 +70,34 @@ import {
     
   
     const addSquad = () => {
-      if (addData && addData.length > 0) {
+      if (addSName && addSName.length > 0) {
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         const data = {
-          heading: addData,
+          sName: addSName,
+          formation: addFormation,
+          fSquad: addFSquad,
+          attacking: addAttacking,
+          defending: addDefending,
+          captain: addCaptain,
+          fTaker: addFTaker,
+          pTaker: addPTaker,
+          leftTaker: addLCTaker,
+          rightTaker: addRCTaker,
           createdAt: timestamp,
         };
         squadRef
           .add(data)
           .then(() => {
-            setAddData("");
+            setAddSName("");
+            setAddFormation("");
+            setAddFSquad("");
+            setAddAttacking("");
+            setAddDefending("");
+            setAddCaptain("");
+            setAddFTaker("");
+            setAddPTaker("");
+            setAddLCTaker("");
+            setAddRCTaker("");
             Keyboard.dismiss();
           })
           .catch((error) => {
@@ -81,53 +117,115 @@ import {
             </Text>
         
           </View>
-          <Text style={styles.title}>Add New Squad</Text>
-            <TextInput
+          <Text style={styles.title}>Create New Squad</Text>
+          <TextInput
               style={styles.input}
-              placeholder="Add  New Squad"
+              placeholder="Squad Name "
               placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-
-{/* <TextInput
-              style={styles.input}
-              placeholder="Add a New "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
+              onChangeText={(sName) => setAddSName(sName)}
+              value={addSName}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
 
 <TextInput
               style={styles.input}
-              placeholder="Add a New "
+              placeholder="Formation"
               placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
+              onChangeText={(formation) => setAddFormation(formation)}
+              value={addFormation}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+              textContentType="number"
+            /> 
+   
+   <TextInput
+              style={styles.input}
+              placeholder="Full Squad "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(fSquad) => setAddFSquad(fSquad)}
+              value={addFSquad}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            /> 
+
+<Text style={styles.title}>Game Plan</Text>
+        <TextInput
+              style={styles.input}
+              placeholder="Attacking Plan"
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(attacking) => setAddAttacking(attacking)}
+              value={addAttacking}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
 
 <TextInput
               style={styles.input}
-              placeholder="Add a New "
+              placeholder="Defending Plan "
               placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
+              onChangeText={(defending) => setAddDefending(defending)}
+              value={addDefending}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
-            /> */}
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Captain "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(captain) => setAddCaptain(captain)}
+              value={addCaptain}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Free-kick Taker "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(fTaker) => setAddFTaker(fTaker)}
+              value={addFTaker}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Panelty Taker "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(pTaker) => setAddPTaker(pTaker)}
+              value={addPTaker}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Left Conor Taker "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(leftTaker) => setAddLCTaker(leftTaker)}
+              value={addLCTaker}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+
+<TextInput
+              style={styles.input}
+              placeholder="Right Conor Taker "
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(rightTaker) => setAddRCTaker(rightTaker)}
+              value={addRCTaker}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
   
             <TouchableOpacity style={styles.addButton}
              onPress={() => {
                  addSquad();
                  navigation.navigate("SquadHome");
               }} >
-              <Text style={styles.buttonText}>Add</Text>
+              <Text style={styles.buttonText}>Create A New Squad</Text>
             </TouchableOpacity>
           </View>
   
@@ -136,7 +234,7 @@ import {
     );
   };
   
-  export default AddSquad;
+  export default AddSquads;
   
   const styles = StyleSheet.create({
     container: {
