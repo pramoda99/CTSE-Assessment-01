@@ -89,7 +89,7 @@ const PlayersHome = () => {
   };
 
   const addPlayer = () => {
-    if (addData && addData.length > 0) {
+    if (addPName && addPName.length > 0) {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
       const data = {
          pName: addPName,
@@ -130,7 +130,7 @@ const PlayersHome = () => {
         });
     }
   };
-
+//   console(item.physical);
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1 }}>
@@ -196,7 +196,7 @@ const PlayersHome = () => {
                         {item.position[4]+ item.position.slice(1)}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.goals[4]+ item.goals.slice(1)}
+                        {item.goals[5]+ item.goals.slice(1)}
                   </Text>
                   <Text style={styles.itemHeading}>
                         {item.assists[6]+ item.assists.slice(1)}
@@ -218,6 +218,7 @@ const PlayersHome = () => {
                   </Text>
                   <Text style={styles.itemHeading}>
                         {item.physical[12]+ item.physical.slice(1)}
+                        
                   </Text>
                 </View>
               </Pressable>
