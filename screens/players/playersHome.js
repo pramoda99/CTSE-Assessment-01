@@ -19,7 +19,11 @@ const PlayersHome = () => {
   const [name, setName] = useState("");
   const [players, setPlayers] = useState([]);
   const playerRef = firebase.firestore().collection("players");
-  const [addData, setAddData] = useState("");
+  const [addPName, setAddPName] = useState("");
+  const [addAge, setAddAge] = useState("");
+  const [addHeight, setAddHeight] = useState("");
+  const [addFoot, setAddFoot] = useState("");
+  const [addPosition, setAddPosition] = useState("");
   const navigation = useNavigation();
   useEffect(() => {
     firebase
@@ -40,10 +44,14 @@ const PlayersHome = () => {
     playerRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
       const players = [];
       querySnapshot.forEach((doc) => {
-        const { heading } = doc.data();
+        const { pName,age,height,foot,position } = doc.data();
         players.push({
-          id: doc.id,
-          heading,
+           id: doc.id,
+          pName,
+          age,
+          height,
+          foot,
+          position
         });
       });
       setPlayers(players);
@@ -66,13 +74,21 @@ const PlayersHome = () => {
     if (addData && addData.length > 0) {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
       const data = {
-        heading: addData,
+         pName: addPName,
+        age:addAge,
+        height:addHeight,
+        foot:addFoot,
+        position:addPosition,
         createdAt: timestamp,
       };
       playerRef
         .add(data)
         .then(() => {
-          setAddData("");
+          setAddPName("");
+          setAddAge("");
+          setAddHeight("")
+          setAddFoot("")
+          setAddPosition("")
           Keyboard.dismiss();
         })
         .catch((error) => {
@@ -131,7 +147,11 @@ const PlayersHome = () => {
 
                 <View style={styles.innerContainer}>
                   <Text style={styles.itemHeading}>
-                    {item.heading[0].toUpperCase() + item.heading.slice(1)}
+                    {item.pName[0].toUpperCase() + item.pName.slice(1)}
+                     {item.age[1]+ item.age.slice(1)}
+                      {item.height[2]+ item.height.slice(1) }
+                       {item.foot[3]}
+                        {item.position[4]+ item.position.slice(1)}
                   </Text>
                 </View>
               </Pressable>
