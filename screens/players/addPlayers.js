@@ -118,7 +118,7 @@ const AddPlayers = () => {
           alert(error);
         });
     }
-  };
+  };addData
 
   return (
     <SafeAreaView style={styles.container}>
