@@ -3,20 +3,20 @@ import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
 
-const DetailPlayers = ({ route }) => {
-  const playerRef = firebase.firestore().collection("players");
+const DetailSquad = ({ route }) => {
+  const squadRef = firebase.firestore().collection("squad");
   const [textHeading, onChangeHeadingText] = useState(route.params.item.heading);
   const navigation = useNavigation();
 
-  const updatePlayer = () => {
+  const updateSquad = () => {
     if (textHeading && textHeading.length > 0) {
-      playerRef
+      squadRef
         .doc(route.params.item.id)
         .update({
           heading: textHeading,
         })
         .then(() => {
-          navigation.navigate("PlayersHome");
+          navigation.navigate("SquadHome");
         })
         .catch((error) => {
           alert(error.message);
@@ -36,16 +36,16 @@ const DetailPlayers = ({ route }) => {
       <Pressable
         style={styles.buttonUpdate}
         onPress={() => {
-          updatePlayer();
+          updateSquad();
         }}
       >
-        <Text>Update Player</Text>
+        <Text>Update Squad</Text>
       </Pressable>
     </View>
   );
 };
 
-export default DetailPlayers;
+export default DetailSquad;
 
 const styles = StyleSheet.create({
   container: {

@@ -17,8 +17,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const PlayersHome = () => {
   const [name, setName] = useState("");
-  const [todos, setTodos] = useState([]);
-  const todoRef = firebase.firestore().collection("todos");
+  const [players, setPlayers] = useState([]);
+  const playerRef = firebase.firestore().collection("players");
   const [addData, setAddData] = useState("");
   const navigation = useNavigation();
   useEffect(() => {
@@ -37,22 +37,22 @@ const PlayersHome = () => {
   }, []);
 
   useEffect(() => {
-    todoRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
-      const todos = [];
+    playerRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
+      const players = [];
       querySnapshot.forEach((doc) => {
         const { heading } = doc.data();
-        todos.push({
+        players.push({
           id: doc.id,
           heading,
         });
       });
-      setTodos(todos);
+      setPlayers(players);
     });
   }, []);
 
-  const deleteTodo = (todos) => {
-    todoRef
-      .doc(todos.id)
+  const deletePlayer = (players) => {
+    playerRef
+      .doc(players.id)
       .delete()
       .then(() => {
         alert("Successfully Deleted..!!");
@@ -62,14 +62,14 @@ const PlayersHome = () => {
       });
   };
 
-  const addTodo = () => {
+  const addPlayer = () => {
     if (addData && addData.length > 0) {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
       const data = {
         heading: addData,
         createdAt: timestamp,
       };
-      todoRef
+      playerRef
         .add(data)
         .then(() => {
           setAddData("");
@@ -102,7 +102,7 @@ const PlayersHome = () => {
         <View style={styles.formContainer}>
           <TouchableOpacity
             style={styles.addButton}
-            onPress={() => navigation.navigate("Add")}
+            onPress={() => navigation.navigate("AddPlayers")}
           >
            
             <Text style={styles.buttonText}>Add players</Text>
@@ -110,7 +110,7 @@ const PlayersHome = () => {
         </View>
 
         <FlatList
-          data={todos}
+          data={players}
           numColumns={1}
           renderItem={({ item }) => (
             <View>
@@ -118,15 +118,15 @@ const PlayersHome = () => {
                 <FontAwesome
                   name="edit"
                   color="green"
-                  onPress={() => navigation.navigate("Detail", { item })}
-                  style={styles.todoIcon}
+                  onPress={() => navigation.navigate("DetailPlayers", { item })}
+                  style={styles.icon}
                 />
 
                 <FontAwesome
                   name="trash-o"
                   color="red"
-                  onPress={() => deleteTodo(item)}
-                  style={styles.todoIcon}
+                  onPress={() => deletePlayer(item)}
+                  style={styles.icon}
                 />
 
                 <View style={styles.innerContainer}>
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
   },
-  todoIcon: {
+  icon: {
     marginTop: 5,
     fontSize: 20,
     marginLeft: 14,

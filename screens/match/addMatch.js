@@ -14,16 +14,16 @@ import {
   import { FontAwesome } from "@expo/vector-icons";
   import { useNavigation } from "@react-navigation/native";
   
-  const AddPlayers = () => {
+  const AddMatch = () => {
     const [name, setName] = useState("");
-    const [players, setPlayers] = useState([]);
-    const playerRef = firebase.firestore().collection("players");
+    const [matches, setMatches] = useState([]);
+    const matchRef = firebase.firestore().collection("matches");
     const [addData, setAddData] = useState("");
     const navigation = useNavigation();
     useEffect(() => {
       firebase
         .firestore()
-        .collection("players")
+        .collection("matches")
         .doc(firebase.auth().currentUser.uid)
         .get()
         .then((snapshot) => {
@@ -36,29 +36,29 @@ import {
     }, []);
   
     useEffect(() => {
-      playerRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
-        const players = [];
+      matchRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
+        const matches = [];
         querySnapshot.forEach((doc) => {
           const { heading } = doc.data();
-          players.push({
+          matches.push({
             id: doc.id,
             heading,
           });
         });
-        setPlayers(players);
+        setMatches(matches);
       });
     }, []);
   
     
   
-    const addPlayer = () => {
+    const addMatch = () => {
       if (addData && addData.length > 0) {
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         const data = {
           heading: addData,
           createdAt: timestamp,
         };
-        playerRef
+        matchRef
           .add(data)
           .then(() => {
             setAddData("");
@@ -81,10 +81,10 @@ import {
             </Text>
         
           </View>
-          <Text style={styles.title}>Add New Players</Text>
+          <Text style={styles.title}>Add New Match</Text>
             <TextInput
               style={styles.input}
-              placeholder="Add a New Player"
+              placeholder="Add  New Match"
               placeholderTextColor="#aaaaaa"
               onChangeText={(heading) => setAddData(heading)}
               value={addData}
@@ -124,8 +124,8 @@ import {
   
             <TouchableOpacity style={styles.addButton}
              onPress={() => {
-                 addPlayer();
-                 navigation.navigate("PlayersHome");
+                 addMatch();
+                 navigation.navigate("MatchHome");
               }} >
               <Text style={styles.buttonText}>Add</Text>
             </TouchableOpacity>
@@ -136,7 +136,7 @@ import {
     );
   };
   
-  export default AddPlayers;
+  export default AddMatch;
   
   const styles = StyleSheet.create({
     container: {

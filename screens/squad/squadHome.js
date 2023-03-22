@@ -13,17 +13,18 @@ import {
   import { firebase } from "../../config";
   import { FontAwesome } from "@expo/vector-icons";
   import { useNavigation } from "@react-navigation/native";
+  import Icon from "react-native-vector-icons/FontAwesome";
   
-  const AddPlayers = () => {
+  const SquadHome = () => {
     const [name, setName] = useState("");
-    const [players, setPlayers] = useState([]);
-    const playerRef = firebase.firestore().collection("players");
+    const [squad, setSquad] = useState([]);
+    const squadRef = firebase.firestore().collection("squad");
     const [addData, setAddData] = useState("");
     const navigation = useNavigation();
     useEffect(() => {
       firebase
         .firestore()
-        .collection("players")
+        .collection("users")
         .doc(firebase.auth().currentUser.uid)
         .get()
         .then((snapshot) => {
@@ -36,20 +37,30 @@ import {
     }, []);
   
     useEffect(() => {
-      playerRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
-        const players = [];
+      squadRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
+        const squad = [];
         querySnapshot.forEach((doc) => {
           const { heading } = doc.data();
-          players.push({
+          squad.push({
             id: doc.id,
             heading,
           });
         });
-        setPlayers(players);
+        setSquad(squad);
       });
     }, []);
   
-    
+    const deletePlayer = (squad) => {
+      squadRef
+        .doc(squad.id)
+        .delete()
+        .then(() => {
+          alert("Successfully Deleted..!!");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    };
   
     const addPlayer = () => {
       if (addData && addData.length > 0) {
@@ -58,7 +69,7 @@ import {
           heading: addData,
           createdAt: timestamp,
         };
-        playerRef
+        squadRef
           .add(data)
           .then(() => {
             setAddData("");
@@ -79,64 +90,60 @@ import {
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>
               Hello , {name.firstname}
             </Text>
-        
+            <TouchableOpacity
+              onPress={() => {
+                firebase.auth().signOut();
+              }}
+              style={styles.button}
+            >
+              <Text style={{ fontSize: 22, fontWeight: "bold" }}>Sign out</Text>
+            </TouchableOpacity>
           </View>
-          <Text style={styles.title}>Add New Players</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Add a New Player"
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-
-{/* <TextInput
-              style={styles.input}
-              placeholder="Add a New "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-
-<TextInput
-              style={styles.input}
-              placeholder="Add a New "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-
-<TextInput
-              style={styles.input}
-              placeholder="Add a New "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(heading) => setAddData(heading)}
-              value={addData}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            /> */}
-  
-            <TouchableOpacity style={styles.addButton}
-             onPress={() => {
-                 addPlayer();
-                 navigation.navigate("PlayersHome");
-              }} >
-              <Text style={styles.buttonText}>Add</Text>
+          <View style={styles.formContainer}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={() => navigation.navigate("AddSquad")}
+            >
+             
+              <Text style={styles.buttonText}>Add squad</Text>
             </TouchableOpacity>
           </View>
   
-    
+          <FlatList
+            data={squad}
+            numColumns={1}
+            renderItem={({ item }) => (
+              <View>
+                <Pressable style={styles.container}>
+                  <FontAwesome
+                    name="edit"
+                    color="green"
+                    onPress={() => navigation.navigate("DetailSquad", { item })}
+                    style={styles.icon}
+                  />
+  
+                  <FontAwesome
+                    name="trash-o"
+                    color="red"
+                    onPress={() => deletePlayer(item)}
+                    style={styles.icon}
+                  />
+  
+                  <View style={styles.innerContainer}>
+                    <Text style={styles.itemHeading}>
+                      {item.heading[0].toUpperCase() + item.heading.slice(1)}
+                    </Text>
+                  </View>
+                </Pressable>
+              </View>
+            )}
+          />
+        </View>
       </SafeAreaView>
     );
   };
   
-  export default AddPlayers;
+  export default SquadHome;
   
   const styles = StyleSheet.create({
     container: {
@@ -147,6 +154,11 @@ import {
       marginHorizontal: 10,
       flexDirection: "row",
       alignItems: "center",
+      shadowColor: "blue",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,
+      elevation: 7,
     },
     innerContainer: {
       alignItems: "center",
@@ -161,46 +173,39 @@ import {
     },
   
     formContainer: {
-    //   flexDirection: "row",
+      flexDirection: "row",
       height: 80,
       marginLeft: 10,
       marginRight: 10,
       marginTop: 100,
     },
-
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 24,
-      },
   
     input: {
-        width: '80%',
-        height: 40,
-        padding: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        marginBottom: 16,
+      height: 48,
+      borderRadius: 5,
+      overflow: "hidden",
+      backgroundColor: "white",
+      paddingLeft: 16,
+      flex: 1,
+      marginRight: 5,
     },
   
     buttonText: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
+      color: "white",
+      fontSize: 20,
     },
-    todoIcon: {
+    icon: {
       marginTop: 5,
       fontSize: 20,
       marginLeft: 14,
     },
     addButton: {
-        width: '80%',
-        height: 50,
-        backgroundColor: '#007bff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5,
+      height: 47,
+      borderRadius: 5,
+      backgroundColor: "#788eec",
+      width: 80,
+      alignItems: "center",
+      justifyContent: "center",
     },
   
     button: {

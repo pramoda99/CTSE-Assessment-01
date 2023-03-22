@@ -13,13 +13,10 @@ import React, { useEffect, useState } from "react";
 import { firebase } from "../config";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Home = () => {
   const [name, setName] = useState("");
-  const [todos, setTodos] = useState([]);
-  const todoRef = firebase.firestore().collection("todos");
-  const [addData, setAddData] = useState("");
   const navigation = useNavigation();
   useEffect(() => {
     firebase
@@ -36,50 +33,9 @@ const Home = () => {
       });
   }, []);
 
-  useEffect(() => {
-    todoRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
-      const todos = [];
-      querySnapshot.forEach((doc) => {
-        const { heading } = doc.data();
-        todos.push({
-          id: doc.id,
-          heading,
-        });
-      });
-      setTodos(todos);
-    });
-  }, []);
 
-  const deleteTodo = (todos) => {
-    todoRef
-      .doc(todos.id)
-      .delete()
-      .then(() => {
-        alert("Successfully Deleted..!!");
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
 
-  const addTodo = () => {
-    if (addData && addData.length > 0) {
-      const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-      const data = {
-        heading: addData,
-        createdAt: timestamp,
-      };
-      todoRef
-        .add(data)
-        .then(() => {
-          setAddData("");
-          Keyboard.dismiss();
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    }
-  };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -100,48 +56,34 @@ const Home = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.formContainer}>
-         
+          <TouchableOpacity
+            style={styles.addButton}
+             onPress={() => navigation.navigate("PlayersHome")}
+          >
+            <Text style={styles.buttonText}>Players</Text>
+          </TouchableOpacity>
 
-          <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate("Add")}>
-          <Icon name="plus" size={20} color="#fff" style={{ marginRight: 8 }} />
-            <Text style={styles.buttonText}>Add</Text>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate("SquadHome")}
+          >
+            <Text style={styles.buttonText}>Squad</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate("StaffHome")}
+          >
+            <Text style={styles.buttonText}>Staff</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate("MatchHome")}
+          >
+            <Text style={styles.buttonText}>Match</Text>
           </TouchableOpacity>
         </View>
-
-        <FlatList
-          data={todos}
-          numColumns={1}
-          renderItem={({ item }) => (
-            <View>
-              <Pressable
-                style={styles.container}
-                
-              >
-<FontAwesome
-                  name="edit"
-                  color="green"
-                  onPress={() => navigation.navigate("Detail", { item })}
-                  style={styles.todoIcon}
-                />
-
-                <FontAwesome
-                  name="trash-o"
-                  color="red"
-                  onPress={() => deleteTodo(item)}
-                  style={styles.todoIcon}
-                />
-
-
-
-                <View style={styles.innerContainer}>
-                  <Text style={styles.itemHeading}>
-                    {item.heading[0].toUpperCase() + item.heading.slice(1)}
-                  </Text>
-                </View>
-              </Pressable>
-            </View>
-          )}
-        />
       </View>
     </SafeAreaView>
   );
@@ -158,12 +100,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
-   shadowColor:'blue',
-    shadowOffset:{width:0, height:2},
-    shadowOpacity:0.8,
-    shadowRadius:2,
-    elevation:7,
-
+    shadowColor: "blue",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 7,
   },
   innerContainer: {
     alignItems: "center",

@@ -10,20 +10,20 @@ import {
     Pressable,
   } from "react-native";
   import React, { useEffect, useState } from "react";
-  import { firebase } from "../config";
+  import { firebase } from "../../config";
   import { FontAwesome } from "@expo/vector-icons";
   import { useNavigation } from "@react-navigation/native";
   
-  const Add = () => {
+  const AddSquad = () => {
     const [name, setName] = useState("");
-    const [todos, setTodos] = useState([]);
-    const todoRef = firebase.firestore().collection("todos");
+    const [squad, setSquad] = useState([]);
+    const squadRef = firebase.firestore().collection("squad");
     const [addData, setAddData] = useState("");
     const navigation = useNavigation();
     useEffect(() => {
       firebase
         .firestore()
-        .collection("users")
+        .collection("squad")
         .doc(firebase.auth().currentUser.uid)
         .get()
         .then((snapshot) => {
@@ -36,29 +36,29 @@ import {
     }, []);
   
     useEffect(() => {
-      todoRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
-        const todos = [];
+      squadRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
+        const squad = [];
         querySnapshot.forEach((doc) => {
           const { heading } = doc.data();
-          todos.push({
+          squad.push({
             id: doc.id,
             heading,
           });
         });
-        setTodos(todos);
+        setSquad(squad);
       });
     }, []);
   
     
   
-    const addTodo = () => {
+    const addSquad = () => {
       if (addData && addData.length > 0) {
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         const data = {
           heading: addData,
           createdAt: timestamp,
         };
-        todoRef
+        squadRef
           .add(data)
           .then(() => {
             setAddData("");
@@ -81,10 +81,10 @@ import {
             </Text>
         
           </View>
-          <Text style={styles.title}>Add tasks</Text>
+          <Text style={styles.title}>Add New Squad</Text>
             <TextInput
               style={styles.input}
-              placeholder="Add a New Todo"
+              placeholder="Add  New Squad"
               placeholderTextColor="#aaaaaa"
               onChangeText={(heading) => setAddData(heading)}
               value={addData}
@@ -94,7 +94,7 @@ import {
 
 {/* <TextInput
               style={styles.input}
-              placeholder="Add a New Todo"
+              placeholder="Add a New "
               placeholderTextColor="#aaaaaa"
               onChangeText={(heading) => setAddData(heading)}
               value={addData}
@@ -104,7 +104,7 @@ import {
 
 <TextInput
               style={styles.input}
-              placeholder="Add a New Todo"
+              placeholder="Add a New "
               placeholderTextColor="#aaaaaa"
               onChangeText={(heading) => setAddData(heading)}
               value={addData}
@@ -114,7 +114,7 @@ import {
 
 <TextInput
               style={styles.input}
-              placeholder="Add a New Todo"
+              placeholder="Add a New "
               placeholderTextColor="#aaaaaa"
               onChangeText={(heading) => setAddData(heading)}
               value={addData}
@@ -124,8 +124,8 @@ import {
   
             <TouchableOpacity style={styles.addButton}
              onPress={() => {
-                 addTodo();
-                 navigation.navigate("Home");
+                 addSquad();
+                 navigation.navigate("SquadHome");
               }} >
               <Text style={styles.buttonText}>Add</Text>
             </TouchableOpacity>
@@ -136,7 +136,7 @@ import {
     );
   };
   
-  export default Add;
+  export default AddSquad;
   
   const styles = StyleSheet.create({
     container: {
