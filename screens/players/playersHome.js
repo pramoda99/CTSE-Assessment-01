@@ -179,45 +179,52 @@ const PlayersHome = () => {
                   style={styles.icon}
                 />
 
+<FontAwesome
+                  name="eye"
+                  color="blue"
+                  onPress={() => navigation.navigate("ViewPlayers", { item })}
+                  style={styles.icon}
+                />
+
                 <View style={styles.innerContainer}>
                   <Text style={styles.itemHeading}>
-                    {item.pName[0].toUpperCase() + item.pName.slice(1)}
+                    {item.pName}
                     </Text>
                     <Text style={styles.itemHeading}>
-                     {item.age[1]+ item.age.slice(1)}
+                     {item.age}
                      </Text>
                      <Text style={styles.itemHeading}>
-                      {item.height[2]+ item.height.slice(1) }
+                      {item.height }
                       </Text>
                       <Text style={styles.itemHeading}>
-                       {item.foot[3]}
+                       {item.foot}
                        </Text>
                        <Text style={styles.itemHeading}>
-                        {item.position[4]+ item.position.slice(1)}
+                        {item.position}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.goals[5]+ item.goals.slice(1)}
+                        {item.goals}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.assists[6]+ item.assists.slice(1)}
+                        {item.assists}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.sheets[7]+ item.sheets.slice(1)}
+                        {item.sheets}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.attacking[8]+ item.attacking.slice(1)}
+                        {item.attacking}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.defending[9]+ item.defending.slice(1)}
+                        {item.defending}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.dribbling[10]+ item.dribbling.slice(1)}
+                        {item.dribbling}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.passing[11]+ item.passing.slice(1)}
+                        {item.passing}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.physical[12]+ item.physical.slice(1)}
+                        {item.physical}
                         
                   </Text>
                 </View>
