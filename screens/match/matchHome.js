@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     Keyboard,
     Pressable,
+    ScrollView,
   } from "react-native";
   import React, { useEffect, useState } from "react";
   import { firebase } from "../../config";
@@ -19,7 +20,16 @@ import {
     const [name, setName] = useState("");
     const [matches, setMatches] = useState([]);
     const matchRef = firebase.firestore().collection("matches");
-    const [addData, setAddData] = useState("");
+    const [addTitle, setAddTitle] = useState("");
+    const [addTournament, setAddTournament] = useState("");
+    const [addDate, setAddDate] = useState("");
+    const [addKick, setAddKick] = useState("");
+    const [addOur, setAddOur] = useState("");
+    const [addOpponent, setAddOpponent] = useState("");
+    const [addResult, setAddResult] = useState("");
+    const [addSheets, setAddSheets] = useState("");
+    const [addPom, setAddPom] = useState("");
+    const [addRating, setAddRating] = useState("");
     const navigation = useNavigation();
     useEffect(() => {
       firebase
@@ -40,10 +50,21 @@ import {
       matchRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
         const matches = [];
         querySnapshot.forEach((doc) => {
-          const { heading } = doc.data();
+          const {  title,tournament,date,kick,
+            our,
+            opponent,result,sheets,pom,rating } = doc.data();
           matches.push({
             id: doc.id,
-            heading,
+            title,
+          tournament,
+          date,
+          kick,
+          our,
+          opponent,
+          result,
+          sheets,
+          pom,
+          rating,
           });
         });
         setMatches(matches);
@@ -63,16 +84,34 @@ import {
     };
   
     const addMatch = () => {
-      if (addData && addData.length > 0) {
+      if (addTitle && addTitle.length > 0) {
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         const data = {
-          heading: addData,
+          title:addTitle,
+          tournament:addTournament,
+          date:addDate,
+          kick:addKick,
+          our:addOur,
+          opponent:addOpponent,
+          result:addResult,
+          sheets:addSheets,
+          pom:addPom,
+          rating:addRating,
           createdAt: timestamp,
         };
         matchRef
           .add(data)
           .then(() => {
-            setAddData("");
+            setAddTitle("");
+          setAddTournament("");
+          setAddDate("")
+          setAddKick("")
+          setAddOur("")
+          setAddOpponent("")
+          setAddResult("")
+          setAddSheets("")
+          setAddPom("")
+          setAddRating("")
             Keyboard.dismiss();
           })
           .catch((error) => {
@@ -82,6 +121,7 @@ import {
     };
   
     return (
+      <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 1 }}>
           <View
@@ -130,9 +170,36 @@ import {
                   />
   
                   <View style={styles.innerContainer}>
-                    <Text style={styles.itemHeading}>
-                      {item.heading[0].toUpperCase() + item.heading.slice(1)}
+                  <Text style={styles.itemHeading}>
+                    {item.title}
                     </Text>
+                    <Text style={styles.itemHeading}>
+                     {item.tournament}
+                     </Text>
+                     <Text style={styles.itemHeading}>
+                      {item.date }
+                      </Text>
+                      <Text style={styles.itemHeading}>
+                       {item.kick}
+                       </Text>
+                       <Text style={styles.itemHeading}>
+                        {item.our}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.opponent}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.result}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.sheets}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.pom}
+                  </Text>
+                  <Text style={styles.itemHeading}>
+                        {item.rating}
+                  </Text>
                   </View>
                 </Pressable>
               </View>
@@ -140,6 +207,7 @@ import {
           />
         </View>
       </SafeAreaView>
+      </ScrollView>
     );
   };
   

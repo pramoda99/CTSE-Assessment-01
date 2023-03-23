@@ -1,19 +1,38 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable,ScrollView } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
 
 const DetailMatch = ({ route }) => {
   const matchRef = firebase.firestore().collection("matches");
-  const [textHeading, onChangeHeadingText] = useState(route.params.item.heading);
+  const [textTitle, onChangeTitle] = useState(route.params.item.title);
+  const [textTournament, onChangeTournament] = useState(route.params.item.tournament);
+  const [textDate, onChangeDate] = useState(route.params.item.date);
+  const [textKick, onChangeKick] = useState(route.params.item.kick);
+  const [textOur, onChangeOur] = useState(route.params.item.our);
+  const [textOpponent, onChangeOpponent] = useState(route.params.item.opponent);
+  const [textResult, onChangeResult] = useState(route.params.item.result);
+  const [textSheets, onChangeSheets] = useState(route.params.item.sheets);
+  const [textPom, onChangePom] = useState(route.params.item.pom);
+  const [textRating, onChangeRating] = useState(route.params.item.rating);
   const navigation = useNavigation();
 
   const updateMatch = () => {
-    if (textHeading && textHeading.length > 0) {
+    if (textTitle && textTitle.length > 0) {
       matchRef
         .doc(route.params.item.id)
         .update({
-          heading: textHeading,
+          title: textTitle,
+          tournament:textTournament,
+          date:textDate,
+          kick:textKick,
+          our:textOur,
+          opponent:textOpponent,
+          result:textResult,
+          sheets:textSheets,
+          pom:textPom,
+          rating:textRating,
+
         })
         .then(() => {
           navigation.navigate("MatchHome");
@@ -25,13 +44,85 @@ const DetailMatch = ({ route }) => {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
-      <TextInput
-        style={styles.textField}
-        onChangeText={onChangeHeadingText}
-        value={textHeading}
-        // placeholder="Update "
-      />
+     
+
+<Text style={styles.title}>Update Matches</Text>
+
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeTitle}
+      value={textTitle}
+      
+      
+    />
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeTournament}
+      value={textTournament}
+      
+      textContentType="number"
+    /> 
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeDate}
+      value={textDate}
+      
+    /> 
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeKick}
+      value={textKick}
+      
+    />
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeOur}
+      value={textOur}
+      
+    />
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeOpponent}
+      value={textOpponent}
+      
+    />
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeResult}
+      value={textResult}
+      
+    />
+
+<TextInput
+      style={styles.textField}
+      onChangeText={onChangeSheets}
+      value={textSheets}
+      
+    />
+
+<TextInput
+              style={styles.textField}
+              onChangeText={onChangePom}
+              value={textPom}
+              
+            />
+
+<TextInput
+              style={styles.textField}
+              onChangeText={onChangeRating}
+              value={textRating}
+              
+            />
+
 
       <Pressable
         style={styles.buttonUpdate}
@@ -42,6 +133,7 @@ const DetailMatch = ({ route }) => {
         <Text>Update Match</Text>
       </Pressable>
     </View>
+    </ScrollView>
   );
 };
 
