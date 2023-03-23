@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     Keyboard,
     Pressable,
+    ScrollView,
   } from "react-native";
   import React, { useEffect, useState } from "react";
   import { firebase } from "../../config";
@@ -107,6 +108,7 @@ import {
     };
   
     return (
+      <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 1 }}>
           <View
@@ -231,6 +233,7 @@ import {
   
     
       </SafeAreaView>
+      </ScrollView>
     );
   };
   
