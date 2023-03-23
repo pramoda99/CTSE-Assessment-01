@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable,ScrollView } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
 
@@ -43,6 +43,7 @@ const DetailSquad = ({ route }) => {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <Text style={styles.title}>Update Squad</Text>
       
@@ -131,6 +132,7 @@ const DetailSquad = ({ route }) => {
         <Text>Update Squad</Text>
       </Pressable>
     </View>
+    </ScrollView>
   );
 };
 

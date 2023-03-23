@@ -79,10 +79,7 @@ import {
     const deletePlayer = (players) => {
       playerRef
         .doc(players.id)
-        .delete()
-        .then(() => {
-          alert("Successfully Deleted..!!");
-        })
+       
         .catch((error) => {
           alert(error);
         });
@@ -152,7 +149,7 @@ import {
         
   
           <FlatList
-            data={players.id}
+            data={ deletePlayer}
             numColumns={1}
             renderItem={({ item }) => (
               <View>

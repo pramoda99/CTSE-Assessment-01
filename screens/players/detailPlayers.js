@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable, ScrollView } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
 
@@ -49,6 +49,7 @@ const DetailPlayers = ({ route }) => {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
      
 
@@ -162,6 +163,7 @@ const DetailPlayers = ({ route }) => {
         <Text>Update Player</Text>
       </Pressable>
     </View>
+    </ScrollView>
   );
 };
 
