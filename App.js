@@ -24,10 +24,10 @@ import AddSquad from "./screens/squad/addSquad";
 import DetailSquad from "./screens/squad/detailSquad";
 import SquadHome from "./screens/squad/squadHome";
 
-// staff component...........................................
-import AddStaff from "./screens/staff/addStaff";
-import DetailStaff from "./screens/staff/detailStaff";
-import StaffHome from "./screens/staff/staffHome";
+// training component...........................................
+import AddTraining from "./screens/training/addTraining";
+import DetailTraining from "./screens/training/detailTraining";
+import TrainingHome from "./screens/training/trainingHome";
 
 const Stack = createStackNavigator();
 
@@ -270,12 +270,12 @@ function App() {
         }}
       />
 
-      {/* Staff component........................................ */}
+      {/* Training component........................................ */}
       <Stack.Screen
-        name="AddStaff"
-        component={AddStaff}
+        name="AddTraining"
+        component={AddTraining}
         options={{
-          headerTitle: () => <Header name="AddStaff" />,
+          headerTitle: () => <Header name="AddTraining" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -288,10 +288,10 @@ function App() {
       />
 
       <Stack.Screen
-        name="DetailStaff"
-        component={DetailStaff}
+        name="DetailTraining"
+        component={DetailTraining}
         options={{
-          headerTitle: () => <Header name="DetailStaff" />,
+          headerTitle: () => <Header name="DetailTraining" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -304,10 +304,10 @@ function App() {
       />
 
       <Stack.Screen
-        name="StaffHome"
-        component={StaffHome}
+        name="TrainingHome"
+        component={TrainingHome}
         options={{
-          headerTitle: () => <Header name="StaffHome" />,
+          headerTitle: () => <Header name="TrainingHome" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,

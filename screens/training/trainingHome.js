@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     Keyboard,
     Pressable,
+    ScrollView,
   } from "react-native";
   import React, { useEffect, useState } from "react";
   import { firebase } from "../../config";
@@ -15,11 +16,19 @@ import {
   import { useNavigation } from "@react-navigation/native";
   import Icon from "react-native-vector-icons/FontAwesome";
   
-  const StaffHome = () => {
+  const TrainingHome = () => {
     const [name, setName] = useState("");
-    const [staff, setStaff] = useState([]);
-    const staffRef = firebase.firestore().collection("staff");
-    const [addData, setAddData] = useState("");
+    const [training, setTraining] = useState([]);
+    const trainingRef = firebase.firestore().collection("training");
+    const [addTDate, setAddTDate] = useState("");
+  const [addTTime, setAddTTime] = useState("");
+  const [addFocus, setAddFocus] = useState("");
+  const [addSession, setAddSession] = useState("");
+  const [addStriker, setAddStriker] = useState("");
+  const [addMidfielder, setAddMidfielder] = useState("");
+  const [addDefender, setAddDefender] = useState("");
+  const [addGoalkeeper, setAddGoalkeeper] = useState("");
+  const [addRating, setAddRating] = useState("");
     const navigation = useNavigation();
     useEffect(() => {
       firebase
@@ -37,22 +46,38 @@ import {
     }, []);
   
     useEffect(() => {
-      staffRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
-        const staff = [];
+      trainingRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
+        const training = [];
         querySnapshot.forEach((doc) => {
-          const { heading } = doc.data();
-          staff.push({
+          const { tDate,
+            tTime,
+            focus,
+            session,
+            striker,
+            midfielder,
+            defender,
+            goalkeeper,
+            rating } = doc.data();
+          training.push({
             id: doc.id,
-            heading,
+            tDate,
+            tTime,
+            focus,
+            session,
+            striker,
+            midfielder,
+            defender,
+            goalkeeper,
+            rating,
           });
         });
-        setStaff(staff);
+        setTraining(training);
       });
     }, []);
   
-    const deleteStaff = (staff) => {
-      staffRef
-        .doc(staff.id)
+    const deleteTraining = (training) => {
+      trainingRef
+        .doc(training.id)
         .delete()
         .then(() => {
           alert("Successfully Deleted..!!");
@@ -62,17 +87,33 @@ import {
         });
     };
   
-    const addStaff = () => {
-      if (addData && addData.length > 0) {
+    const addTraining = () => {
+      if (tDate && tDate.length > 0) {
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         const data = {
-          heading: addData,
+          tDate:addTDate,
+          tTime:addTTime,
+          focus:addFocus,
+          session:addSession,
+          striker:addStriker,
+          midfielder:addMidfielder,
+          defender:addDefender,
+          goalkeeper:addGoalkeeper,
+          rating:addRating,
           createdAt: timestamp,
         };
-        staffRef
+        trainingRef
           .add(data)
           .then(() => {
-            setAddData("");
+            setAddTDate("");
+            setAddTTime("");
+            setAddFocus("");
+            setAddSession("");
+            setAddStriker("");
+            setAddMidfielder("");
+            setAddDefender("");
+            setAddGoalkeeper("");
+            setAddRating("");
             Keyboard.dismiss();
           })
           .catch((error) => {
@@ -82,6 +123,7 @@ import {
     };
   
     return (
+      <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 1 }}>
           <View
@@ -102,15 +144,15 @@ import {
           <View style={styles.formContainer}>
             <TouchableOpacity
               style={styles.addButton}
-              onPress={() => navigation.navigate("AddStaff")}
+              onPress={() => navigation.navigate("AddTraining")}
             >
              
-              <Text style={styles.buttonText}>Add Staff</Text>
+              <Text style={styles.buttonText}>Add Training</Text>
             </TouchableOpacity>
           </View>
   
           <FlatList
-            data={staff}
+            data={training}
             numColumns={1}
             renderItem={({ item }) => (
               <View>
@@ -118,21 +160,37 @@ import {
                   <FontAwesome
                     name="edit"
                     color="green"
-                    onPress={() => navigation.navigate("DetailStaff", { item })}
+                    onPress={() => navigation.navigate("DetailTraining", { item })}
                     style={styles.icon}
                   />
   
                   <FontAwesome
                     name="trash-o"
                     color="red"
-                    onPress={() => deleteStaff(item)}
+                    onPress={() => deleteTraining(item)}
                     style={styles.icon}
                   />
   
                   <View style={styles.innerContainer}>
-                    <Text style={styles.itemHeading}>
-                      {item.heading[0].toUpperCase() + item.heading.slice(1)}
+                  <Text style={styles.itemHeading}>
+                    {item.tDate}
                     </Text>
+                    <Text style={styles.itemHeading}>
+                    {item.tTime}
+                    </Text>
+                    <Text style={styles.itemHeading}>
+                    {item.focus}
+                    </Text>
+                    <Text style={styles.itemHeading}>
+                    {item.striker}
+                    </Text>
+                    <Text style={styles.itemHeading}>
+                    {item.midfielder}
+                    </Text>
+                    <Text style={styles.itemHeading}>
+                    {item.rating}
+                    </Text>
+                  
                   </View>
                 </Pressable>
               </View>
@@ -140,10 +198,11 @@ import {
           />
         </View>
       </SafeAreaView>
+      </ScrollView>
     );
   };
   
-  export default StaffHome;
+  export default TrainingHome;
   
   const styles = StyleSheet.create({
     container: {
