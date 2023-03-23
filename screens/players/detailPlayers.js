@@ -61,7 +61,7 @@ const DetailPlayers = ({ route }) => {
       style={styles.textField}
       onChangeText={onChangePNameText}
       value={textPName}
-      readOnly
+      
       
     />
 
