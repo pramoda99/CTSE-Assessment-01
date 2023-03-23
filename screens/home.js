@@ -72,9 +72,9 @@ const Home = () => {
 
           <TouchableOpacity
             style={styles.addButton}
-            onPress={() => navigation.navigate("StaffHome")}
+            onPress={() => navigation.navigate("TrainingHome")}
           >
-            <Text style={styles.buttonText}>Staff</Text>
+            <Text style={styles.buttonText}>Training</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
