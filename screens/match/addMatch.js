@@ -10,6 +10,8 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
+import DatePicker from 'react-native-datepicker';
+// import TimePicker from 'react-native-simple-time-picker';
 import React, { useEffect, useState } from "react";
 import { firebase } from "../../config";
 import { FontAwesome } from "@expo/vector-icons";
@@ -19,10 +21,11 @@ const AddMatch = () => {
   const [name, setName] = useState("");
   const [matches, setMatches] = useState([]);
   const matchRef = firebase.firestore().collection("matches");
-
+  const [error1, setError1] = useState(false);
+  const [error2, setError2] = useState(false);
   const [addTitle, setAddTitle] = useState("");
   const [addTournament, setAddTournament] = useState("");
-  const [addDate, setAddDate] = useState("");
+  const [addDate, setAddDate] = useState("09-10-2020");
   const [addKick, setAddKick] = useState("");
   const [addOur, setAddOur] = useState("");
   const [addOpponent, setAddOpponent] = useState("");
@@ -112,6 +115,8 @@ const AddMatch = () => {
     }
   };
 
+  
+
   return (
     <ScrollView>
     <SafeAreaView style={styles.container}>
@@ -146,14 +151,29 @@ const AddMatch = () => {
              
             /> 
    
-   <TextInput
-              style={styles.input}
-              placeholder="Date "
-              placeholderTextColor="#aaaaaa"
+   <DatePicker
+           mode="date" //The enum of date, datetime and time
+           placeholder="select date"
+           format="DD-MM-YYYY"
+           minDate="01-01-2020"
+           maxDate="01-01-2025"
+           confirmBtnText="Confirm"
+           cancelBtnText="Cancel"
+           customStyles={{
+             dateIcon: {
+               //display: 'none',
+               position: 'absolute',
+               left: 0,
+               top: 4,
+               marginLeft: 0,
+             },
+             dateInput: {
+               marginLeft: 36,
+             },
+           }}
               onChangeText={(date) => setAddDate(date)}
-              value={addDate}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
+              date={addDate}
+              
             /> 
 
 <TextInput
@@ -162,6 +182,7 @@ const AddMatch = () => {
               placeholderTextColor="#aaaaaa"
               onChangeText={(kick) => setAddKick(kick)}
               value={addKick}
+              keyboardType="time"
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
@@ -170,21 +191,36 @@ const AddMatch = () => {
               style={styles.input}
               placeholder="Our Score"
               placeholderTextColor="#aaaaaa"
-              onChangeText={(our) => setAddOur(our)}
+              onChangeText={(our) => {
+                if (isNaN(our)) {
+                  setError1(true);
+                } else {
+                  setError1(false);
+                  setAddOur(our);
+                }}}
               value={addOur}
+              keyboardType="numeric"
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
-
+             {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
+            
 <TextInput
               style={styles.input}
               placeholder="Opponent Score"
               placeholderTextColor="#aaaaaa"
-              onChangeText={(opponent) => setAddOpponent(opponent)}
+              onChangeText={(opponent) => {
+                if (isNaN(opponent)) {
+                  setError2(true);
+                } else {
+                  setError2(false);
+                  setAddOpponent(opponent);
+                }}}
               value={addOpponent}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
+             {error2 && <Text style={styles.error}>Please enter a valid number</Text>}
 
         <TextInput
               style={styles.input}
@@ -318,5 +354,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 20,
+  },
+
+  error: {
+    color: 'red',
   },
 });

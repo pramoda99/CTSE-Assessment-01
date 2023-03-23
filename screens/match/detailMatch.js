@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Pressable,ScrollView } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
+import DatePicker from 'react-native-datepicker';
 
 const DetailMatch = ({ route }) => {
   const matchRef = firebase.firestore().collection("matches");
+  const [error1, setError1] = useState(false);
+  const [error2, setError2] = useState(false);
   const [textTitle, onChangeTitle] = useState(route.params.item.title);
   const [textTournament, onChangeTournament] = useState(route.params.item.tournament);
   const [textDate, onChangeDate] = useState(route.params.item.date);
@@ -67,10 +70,28 @@ const DetailMatch = ({ route }) => {
       textContentType="number"
     /> 
 
-<TextInput
-      style={styles.textField}
+<DatePicker
+       mode="date" //The enum of date, datetime and time
+           placeholder="select date"
+           format="DD-MM-YYYY"
+           minDate="01-01-2020"
+           maxDate="01-01-2025"
+           confirmBtnText="Confirm"
+           cancelBtnText="Cancel"
+           customStyles={{
+             dateIcon: {
+               //display: 'none',
+               position: 'absolute',
+               left: 0,
+               top: 4,
+               marginLeft: 0,
+             },
+             dateInput: {
+               marginLeft: 36,
+             },
+           }}
       onChangeText={onChangeDate}
-      value={textDate}
+      date={textDate}
       
     /> 
 
