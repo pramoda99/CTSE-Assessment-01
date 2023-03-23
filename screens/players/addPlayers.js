@@ -19,6 +19,9 @@ const AddPlayers = () => {
   const [name, setName] = useState("");
   const [players, setPlayers] = useState([]);
  const playerRef = firebase.firestore().collection("players");
+ const [error1, setError1] = useState(false);
+ const [error2, setError2] = useState(false);
+ const [error3, setError3] = useState(false);
   const [addPName, setAddPName] = useState("");
   const [addAge, setAddAge] = useState("");
   const [addHeight, setAddHeight] = useState("");
@@ -150,22 +153,37 @@ const AddPlayers = () => {
               style={styles.input}
               placeholder="Age "
               placeholderTextColor="#aaaaaa"
-              onChangeText={(age) => setAddAge(age)}
+              onChangeText={(age) => {
+                if (isNaN(our)) {
+                  setError1(true);
+                } else {
+                  setError1(false);
+                  setAddAge(age)
+                }}}
               value={addAge}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
-              textContentType="number"
+              keyboardType="numeric"
             /> 
+            {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
    
    <TextInput
               style={styles.input}
               placeholder="Height "
               placeholderTextColor="#aaaaaa"
-              onChangeText={(height) => setAddHeight(height)}
+              onChangeText={(height) =>  {
+                if (isNaN(height)) {
+                  setError2(true);
+                } else {
+                  setError2(false);
+                setAddHeight(height)
+                }}}
               value={addHeight}
+              keyboardType="numeric"
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             /> 
+            {error2 && <Text style={styles.error}>Please enter a valid number</Text>}
 
         <TextInput
               style={styles.input}
@@ -193,11 +211,18 @@ const AddPlayers = () => {
               style={styles.input}
               placeholder="Goals "
               placeholderTextColor="#aaaaaa"
-              onChangeText={(goals) => setAddGoals(goals)}
+              onChangeText={(goals) => {
+                if (isNaN(goals)) {
+                  setError3(true);
+                } else {
+                  setError3(false);
+                setAddGoals(goals)}}}
               value={addGoals}
+              keyboardType="numeric"
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
+             {error3 && <Text style={styles.error}>Please enter a valid number</Text>}
 
 <TextInput
               style={styles.input}
