@@ -9,7 +9,7 @@ import {
   Keyboard,
   Pressable,
   ScrollView,
-  Picker
+  // Picker
 } from "react-native";
 import DatePicker from 'react-native-datepicker';
 // import TimePicker from 'react-native-simple-time-picker';
@@ -26,7 +26,7 @@ const AddMatch = () => {
   const [error2, setError2] = useState(false);
   const [addTitle, setAddTitle] = useState("");
   const [addTournament, setAddTournament] = useState("");
-  const [addDate, setAddDate] = useState("");
+  const [addDate, setAddDate] = useState("25-03-2023");
   const [addKick, setAddKick] = useState("");
   const [addOur, setAddOur] = useState("");
   const [addOpponent, setAddOpponent] = useState("");
@@ -132,7 +132,19 @@ const AddMatch = () => {
           />
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Tournament</Text>
-          <Picker
+         
+          <TextInput
+            style={styles.input}
+            placeholder="Tournament "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(tournament) => setAddTournament(tournament)}
+            value={addTournament}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+
+          />
+         
+          {/* <Picker
             selectedValue={addTournament}
             onValueChange={(tournament) => setAddTournament(tournament)}
             style={styles.input}
@@ -141,34 +153,37 @@ const AddMatch = () => {
             <Picker.Item style={styles.input} label="League" value="League" />
             <Picker.Item style={styles.input} label="Cup Match" value="Cup Match" />
             <Picker.Item style={styles.input} label="Cup Final" value="Cup Final" />
-          </Picker>
+          </Picker> */}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
           <DatePicker
-            style={styles.inputDate}
-            mode="date" //The enum of date, datetime and time
-            placeholder="Select Date"
-            format="DD-MM-YYYY"
-            minDate="01-01-2020"
-            maxDate="01-01-2025"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-              dateIcon: {
-                //display: 'none',
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: 0,
-              },
-              dateInput: {
-                marginLeft: 36,
-              },
-            }}
-            onChangeText={(date) => setAddDate(date)}
-            date={addDate}
+           date={addDate}
+           mode="date" //The enum of date, datetime and time
+           placeholder="select date"
+           format="DD-MM-YYYY"
+           minDate="01-01-2020"
+           maxDate="01-01-2025"
+           confirmBtnText="Confirm"
+           cancelBtnText="Cancel"
+           customStyles={{
+             dateIcon: {
+               //display: 'none',
+               position: 'absolute',
+               left: 0,
+               top: 4,
+               marginLeft: 0,
+             },
+             dateInput: {
+               marginLeft: 36,
+             },
+           }}
+              onChangeText={(date) => setAddDate(date)}
+             
+              
 
-          />
+              
+
+            /> 
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Kick off</Text>
           <TextInput
