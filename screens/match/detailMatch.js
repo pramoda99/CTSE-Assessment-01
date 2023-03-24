@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, SafeAreaView, TextInput, StyleSheet, Pressable, ScrollView, Picker } from "react-native";
+import { View, TouchableOpacity, Text, SafeAreaView, TextInput, StyleSheet, Pressable, ScrollView } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
 import DatePicker from 'react-native-datepicker';
@@ -122,7 +122,15 @@ const DetailMatch = ({ route }) => {
           />
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Result</Text>
-          <Picker
+         
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeResult}
+            value={textResult}
+
+          />
+         
+          {/* <Picker
           selectedValue={textResult}
           onValueChange={onChangeResult}
           style={styles.input}
@@ -131,7 +139,7 @@ const DetailMatch = ({ route }) => {
           <Picker.Item style={styles.input} label="Win" value="Win" />
           <Picker.Item style={styles.input} label="Draw" value="Draw" />
           <Picker.Item style={styles.input} label="Lost" value="Lost" />
-          </Picker>
+          </Picker> */}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Player of the Match</Text>
           <TextInput
