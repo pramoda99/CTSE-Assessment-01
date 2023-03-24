@@ -21,7 +21,7 @@ import {
     const [training, setTraining] = useState([]);
     const [error1, setError1] = useState(false);
     const trainingRef = firebase.firestore().collection("training");
-    const [addTDate, setAddTDate] = useState("");
+    const [addTDate, setAddTDate] = useState("25-03-2023");
   const [addTTime, setAddTTime] = useState("");
   const [addFocus, setAddFocus] = useState("");
   const [addSession, setAddSession] = useState("");
@@ -122,6 +122,7 @@ import {
            
         <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
           <DatePicker
+          style={styles.inputDate}
            mode="date" //The enum of date, datetime and time
            placeholder="Select Date"
            format="DD-MM-YYYY"
@@ -291,6 +292,15 @@ import {
         borderColor: '#ccc',
         borderRadius: 5,
         marginBottom: 16,
+    },
+
+    inputDate: {
+      width: "80.5%",
+      height: 40,
+      padding: 10,
+      borderRadius: 5,
+      marginBottom: 16,
+      borderColor: "#ccc",
     },
   
     buttonText: {

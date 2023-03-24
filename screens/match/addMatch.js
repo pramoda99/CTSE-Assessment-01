@@ -157,6 +157,7 @@ const AddMatch = () => {
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
           <DatePicker
+          style={styles.inputDate}
            date={addDate}
            mode="date" //The enum of date, datetime and time
            placeholder="select date"
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
   },
 
   inputDate: {
-    width: "80%",
+    width: "80.5%",
     height: 40,
     padding: 10,
     borderRadius: 5,
