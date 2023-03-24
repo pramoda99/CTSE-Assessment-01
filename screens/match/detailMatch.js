@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable,ScrollView } from "react-native";
+import { View, TouchableOpacity, Text, SafeAreaView, TextInput, StyleSheet, Pressable, ScrollView } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
+import DatePicker from 'react-native-datepicker';
 
 const DetailMatch = ({ route }) => {
   const matchRef = firebase.firestore().collection("matches");
+  const [error1, setError1] = useState(false);
+  const [error2, setError2] = useState(false);
   const [textTitle, onChangeTitle] = useState(route.params.item.title);
   const [textTournament, onChangeTournament] = useState(route.params.item.tournament);
   const [textDate, onChangeDate] = useState(route.params.item.date);
@@ -12,7 +15,6 @@ const DetailMatch = ({ route }) => {
   const [textOur, onChangeOur] = useState(route.params.item.our);
   const [textOpponent, onChangeOpponent] = useState(route.params.item.opponent);
   const [textResult, onChangeResult] = useState(route.params.item.result);
-  const [textSheets, onChangeSheets] = useState(route.params.item.sheets);
   const [textPom, onChangePom] = useState(route.params.item.pom);
   const [textRating, onChangeRating] = useState(route.params.item.rating);
   const navigation = useNavigation();
@@ -23,15 +25,14 @@ const DetailMatch = ({ route }) => {
         .doc(route.params.item.id)
         .update({
           title: textTitle,
-          tournament:textTournament,
-          date:textDate,
-          kick:textKick,
-          our:textOur,
-          opponent:textOpponent,
-          result:textResult,
-          sheets:textSheets,
-          pom:textPom,
-          rating:textRating,
+          tournament: textTournament,
+          date: textDate,
+          kick: textKick,
+          our: textOur,
+          opponent: textOpponent,
+          result: textResult,
+          pom: textPom,
+          rating: textRating,
 
         })
         .then(() => {
@@ -45,94 +46,128 @@ const DetailMatch = ({ route }) => {
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-     
+      <SafeAreaView style={styles.container}>
+        <View style={{ flex: 1 }}>
 
-<Text style={styles.title}>Update Matches</Text>
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Title</Text>
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeTitle}
+            value={textTitle}
+            editable={false}
 
+          />
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeTitle}
-      value={textTitle}
-      
-      
-    />
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Tournament</Text>
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeTournament}
+            value={textTournament}
+            editable={false}
+            textContentType="number"
+          />
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeTournament}
-      value={textTournament}
-      
-      textContentType="number"
-    /> 
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
+          <DatePicker
+            style={styles.inputDate}
+            mode="date" //The enum of date, datetime and time
+            placeholder="select date"
+            format="DD-MM-YYYY"
+            minDate="01-01-2020"
+            maxDate="01-01-2025"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateIcon: {
+                //display: 'none',
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                marginLeft: 36,
+              },
+            }}
+            onChangeText={onChangeDate}
+            date={textDate}
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeDate}
-      value={textDate}
-      
-    /> 
+          />
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeKick}
-      value={textKick}
-      
-    />
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Kick off</Text>
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeKick}
+            value={textKick}
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeOur}
-      value={textOur}
-      
-    />
+          />
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeOpponent}
-      value={textOpponent}
-      
-    />
+          <Text>{"\n"}</Text>
+          <Text>{"\n"}</Text>
+          <Text style={styles.title}>Match Records</Text>
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Our Score</Text>
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeOur}
+            value={textOur}
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeResult}
-      value={textResult}
-      
-    />
+          />
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeSheets}
-      value={textSheets}
-      
-    />
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Opponent Score</Text>
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeOpponent}
+            value={textOpponent}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangePom}
-              value={textPom}
-              
-            />
+          />
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeRating}
-              value={textRating}
-              
-            />
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Result</Text>
+         
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeResult}
+            value={textResult}
 
+          />
+         
+          {/* <Picker
+          selectedValue={textResult}
+          onValueChange={onChangeResult}
+          style={styles.input}
+          >
+          <Picker.Item style={styles.input} label="Not Started" value="Not Started" />
+          <Picker.Item style={styles.input} label="Win" value="Win" />
+          <Picker.Item style={styles.input} label="Draw" value="Draw" />
+          <Picker.Item style={styles.input} label="Lost" value="Lost" />
+          </Picker> */}
 
-      <Pressable
-        style={styles.buttonUpdate}
-        onPress={() => {
-          updateMatch();
-        }}
-      >
-        <Text>Update Match</Text>
-      </Pressable>
-    </View>
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Player of the Match</Text>
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangePom}
+            value={textPom}
+
+          />
+
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Manager Ratings</Text>
+          <TextInput
+            style={styles.textField}
+            onChangeText={onChangeRating}
+            value={textRating}
+
+          />
+
+          <TouchableOpacity
+            style={styles.buttonUpdate}
+            onPress={() => {
+              updateMatch();
+              navigation.navigate("MatchHome");
+            }}
+          >
+            <Text style={styles.buttonText}>Update</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     </ScrollView>
   );
 };
@@ -141,7 +176,7 @@ export default DetailMatch;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 80,
+    marginTop: 30,
     marginLeft: 15,
     marginRight: 15,
   },
@@ -153,6 +188,23 @@ const styles = StyleSheet.create({
     color: "#000000",
     backgroundColor: "#e0e0e0",
     borderRadius: 5,
+
+  },
+
+  inputDate: {
+    width: "100%",
+    fontSize: 15,
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+    color: "#000000",
+    backgroundColor: "#e0e0e0",
+  },
+
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 24,
   },
 
   buttonUpdate: {
@@ -164,5 +216,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     elevation: 10,
     backgroundColor: "#0de065",
+
   },
 });

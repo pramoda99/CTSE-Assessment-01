@@ -23,10 +23,10 @@ import AddSquad from "./screens/squad/addSquad";
 import DetailSquad from "./screens/squad/detailSquad";
 import SquadHome from "./screens/squad/squadHome";
 
-// staff component...........................................
-import AddStaff from "./screens/staff/addStaff";
-import DetailStaff from "./screens/staff/detailStaff";
-import StaffHome from "./screens/staff/staffHome";
+// training component...........................................
+import AddTraining from "./screens/training/addTraining";
+import DetailTraining from "./screens/training/detailTraining";
+import TrainingHome from "./screens/training/trainingHome";
 
 const Stack = createStackNavigator();
 
@@ -119,7 +119,7 @@ function App() {
         name="AddMatch"
         component={AddMatch}
         options={{
-          headerTitle: () => <Header name="AddMatch" />,
+          headerTitle: () => <Header name="Add New Fixture" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -135,7 +135,7 @@ function App() {
         name="DetailMatch"
         component={DetailMatch}
         options={{
-          headerTitle: () => <Header name="DetailMatch" />,
+          headerTitle: () => <Header name="Update Match Result" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -151,7 +151,7 @@ function App() {
         name="MatchHome"
         component={MatchHome}
         options={{
-          headerTitle: () => <Header name="MatchHome" />,
+          headerTitle: () => <Header name="All Fixtures" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -168,7 +168,7 @@ function App() {
         name="AddPlayers"
         component={AddPlayers}
         options={{
-          headerTitle: () => <Header name="AddPlayers" />,
+          headerTitle: () => <Header name="Add New Player" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -184,7 +184,7 @@ function App() {
         name="DetailPlayers"
         component={DetailPlayers}
         options={{
-          headerTitle: () => <Header name="DetailPlayers" />,
+          headerTitle: () => <Header name="Update Player" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -201,11 +201,13 @@ function App() {
         component={PlayersHome}
         options={{
           headerTitle: () => <Header name="PlayersHome" />,
+          headerTitle: () => <Header name="All Players" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
             backgroundColor: "#00e47a",
+            backgroundColor: "#00e4d0",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -217,7 +219,7 @@ function App() {
         name="AddSquad"
         component={AddSquad}
         options={{
-          headerTitle: () => <Header name="AddSquad" />,
+          headerTitle: () => <Header name="Create New Squad" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -233,7 +235,7 @@ function App() {
         name="DetailSquad"
         component={DetailSquad}
         options={{
-          headerTitle: () => <Header name="DetailSquad" />,
+          headerTitle: () => <Header name="Update Squad" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -249,7 +251,7 @@ function App() {
         name="SquadHome"
         component={SquadHome}
         options={{
-          headerTitle: () => <Header name="SquadHome" />,
+          headerTitle: () => <Header name="Squads" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -261,28 +263,12 @@ function App() {
         }}
       />
 
-      {/* Staff component........................................ */}
+      {/* Training component........................................ */}
       <Stack.Screen
-        name="AddStaff"
-        component={AddStaff}
+        name="AddTraining"
+        component={AddTraining}
         options={{
-          headerTitle: () => <Header name="AddStaff" />,
-          headerStyle: {
-            height: 150,
-            borderBottomLeftRadius: 50,
-            borderBottomRightRadius: 50,
-            backgroundColor: "#00e47a",
-            shadowColor: "#000",
-            elevation: 25,
-          },
-        }}
-      />
-
-      <Stack.Screen
-        name="DetailStaff"
-        component={DetailStaff}
-        options={{
-          headerTitle: () => <Header name="DetailStaff" />,
+          headerTitle: () => <Header name="Add Training Session" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -295,10 +281,26 @@ function App() {
       />
 
       <Stack.Screen
-        name="StaffHome"
-        component={StaffHome}
+        name="DetailTraining"
+        component={DetailTraining}
         options={{
-          headerTitle: () => <Header name="StaffHome" />,
+          headerTitle: () => <Header name="Update Training Session" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#00e47a",
+            shadowColor: "#000",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="TrainingHome"
+        component={TrainingHome}
+        options={{
+          headerTitle: () => <Header name="Trainings" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,

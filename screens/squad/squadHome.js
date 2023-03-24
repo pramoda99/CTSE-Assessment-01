@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Keyboard,
   Pressable,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { firebase } from "../../config";
@@ -118,95 +119,69 @@ const SquadHome = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{ flex: 1 }}>
-        <View
-          style={{ margin: 10, alignItems: "center", justifyContent: "center" }}
-        >
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Hello , {name.firstname}
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              firebase.auth().signOut();
-            }}
-            style={styles.button}
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <View
+            style={{ margin: 10, alignItems: "center", justifyContent: "center" }}
           >
-            <Text style={{ fontSize: 22, fontWeight: "bold" }}>Sign out</Text>
-          </TouchableOpacity>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              Hello , {name.firstname}
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                firebase.auth().signOut();
+              }}
+              style={styles.button}
+            >
+              <Text style={{ fontSize: 22, fontWeight: "bold" }}>Sign out</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.formContainer}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={() => navigation.navigate("AddSquad")}
+            >
+
+              <Text style={styles.buttonText}>Add squad</Text>
+            </TouchableOpacity>
+          </View>
+
+          <FlatList
+            data={squad}
+            numColumns={1}
+            renderItem={({ item }) => (
+              <View>
+                <Pressable style={styles.container}>
+                  <FontAwesome
+                    name="edit"
+                    color="green"
+                    onPress={() => navigation.navigate("DetailSquad", { item })}
+                    style={styles.icon}
+                  />
+
+                  <FontAwesome
+                    name="trash-o"
+                    color="red"
+                    onPress={() => deleteSquad(item)}
+                    style={styles.icon}
+                  />
+                  {/* <Pressable onPress={() => navigation.navigate('DetailMatch', { item })}> */}
+                  <View style={styles.noteView}>
+                      <Text style={styles.title}>{item.sName}</Text>
+                      <Text style={styles.subtitle}>Formation: {item.formation}</Text>
+                      <Text style={styles.subtitle}>Captain: {item.captain}  (jersey no)</Text>
+                      <Text style={styles.subtitle}>Free-Kick Taker: {item.fTaker} (jersey no)</Text>
+                      <Text style={styles.subtitle}>Penalty Taker: {item.pTaker} (jersey no)</Text>
+                    </View>
+                  {/* </Pressable> */}
+                </Pressable>
+              </View>
+            )}
+          />
         </View>
-        <View style={styles.formContainer}>
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={() => navigation.navigate("AddSquad")}
-          >
-
-            <Text style={styles.buttonText}>Add squad</Text>
-          </TouchableOpacity>
-        </View>
-
-        <FlatList
-          data={squad}
-          numColumns={1}
-          renderItem={({ item }) => (
-            <View>
-              <Pressable style={styles.container}>
-                <FontAwesome
-                  name="edit"
-                  color="green"
-                  onPress={() => navigation.navigate("DetailSquad", { item })}
-                  style={styles.icon}
-                />
-
-                <FontAwesome
-                  name="trash-o"
-                  color="red"
-                  onPress={() => deleteSquad(item)}
-                  style={styles.icon}
-                />
-
-                <FontAwesome
-                  name="eye"
-                  color="blue"
-                  onPress={() => navigation.navigate("#", { item })}
-                  style={styles.icon}
-                />
-
-                <View style={styles.innerContainer}>
-                  <Text style={styles.itemHeading}>
-                    {item.sName}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.formation}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.fSquad}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.attacking}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.captain}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.fTaker}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.pTaker}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.leftTaker}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                    {item.rightTaker}
-                  </Text>
-                </View>
-              </Pressable>
-            </View>
-          )}
-        />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -220,7 +195,7 @@ const styles = StyleSheet.create({
     margin: 5,
     marginHorizontal: 10,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     shadowColor: "blue",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -228,15 +203,28 @@ const styles = StyleSheet.create({
     elevation: 7,
   },
   innerContainer: {
-    alignItems: "center",
+    alignItems: "flex-start",
     flexDirection: "column",
     marginLeft: 45,
   },
 
-  itemHeading: {
-    fontWeight: "bold",
-    fontSize: 18,
-    marginRight: 22,
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+
+  noteView: {
+    flex: 1,
+    backgroundColor: '#fff',
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 7,
+    alignItems: 'center'
   },
 
   formContainer: {
@@ -259,7 +247,7 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: "white",
-    fontSize: 20,
+    fontSize: 15,
   },
   icon: {
     marginTop: 5,
@@ -284,4 +272,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 20,
   },
+
+  subtitle: {
+    fontSize: 16,
+    marginTop: 5
+  }
 });

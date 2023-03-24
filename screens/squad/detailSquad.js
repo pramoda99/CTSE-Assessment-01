@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable,ScrollView } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable, ScrollView } from "react-native";
 import { firebase } from "../../config";
 import { useNavigation } from "@react-navigation/native";
 
@@ -44,94 +44,69 @@ const DetailSquad = ({ route }) => {
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-      <Text style={styles.title}>Update Squad</Text>
-      
-      <TextInput
-      style={styles.textField}
-      onChangeText={onChangeSNameText}
-      value={textSName}
-      readOnly
-      
-    />
+      <View style={styles.container}>
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Squad Name</Text>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeSNameText}
+          value={textSName}
+          editable={false}
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeFormationText}
-      value={textFormation}
-      
-      textContentType="number"
-    /> 
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeFSquadText}
-      value={textFSquad}
-      
-    /> 
+        />
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Formation</Text>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeFormationText}
+          value={textFormation}
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeAttackingText}
-      value={textAttacking}
-      
-    />
+          textContentType="number"
+        />
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Captain (jersey no)</Text>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeCaptainText}
+          value={textCaptain}
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeDefendingText}
-      value={textDefending}
-      
-    />
-{/* 
-<Text style={styles.title}>Stats</Text> */}
+        />
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Free-Kick Taker (jersey no)</Text>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeFTakerText}
+          value={textFTaker}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeCaptainText}
-              value={textCaptain}
-              
-            />
+        />
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Penalty Taker (jersey no)</Text>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangePTakerText}
+          value={textPTaker}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeFTakerText}
-              value={textFTaker}
-              
-            />
+        />
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Left Corner Taker (jersey no)</Text>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeLCTakerText}
+          value={textLCTaker}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangePTakerText}
-              value={textPTaker}
-              
-            />
-{/* 
-<Text style={styles.title}>Skills</Text> */}
+        />
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Right Corner Taker (jersey no)</Text>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeRCTakerText}
+          value={textRCTaker}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeLCTakerText}
-              value={textLCTaker}
-              
-            />
+        />
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeRCTakerText}
-              value={textRCTaker}
-              
-            />
-
-      <Pressable
-        style={styles.buttonUpdate}
-        onPress={() => {
-          updateSquad();
-        }}
-      >
-        <Text>Update Squad</Text>
-      </Pressable>
-    </View>
+        <Pressable
+          style={styles.buttonUpdate}
+          onPress={() => {
+            updateSquad();
+          }}
+        >
+          <Text>Update Squad</Text>
+        </Pressable>
+      </View>
     </ScrollView>
   );
 };
@@ -140,7 +115,7 @@ export default DetailSquad;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 80,
+    marginTop: 30,
     marginLeft: 15,
     marginRight: 15,
   },
