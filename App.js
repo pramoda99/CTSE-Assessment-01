@@ -54,27 +54,32 @@ function App() {
           name="Login"
           component={Login}
           options={{
-            headerTitle: () => <Header name="Todo" />,
+            headerTitle: () => <Header name="Football Manager - 23" />,
             headerStyle: {
               height: 150,
               borderBottomLeftRadius: 50,
               borderBottomRightRadius: 50,
-              backgroundColor: "#00e4d0",
+              backgroundColor: "#00e47a",
               shadowColor: "#000",
               elevation: 25,
             },
           }}
         />
+
+
+
+
+        
         <Stack.Screen
           name="Register"
           component={Register}
           options={{
-            headerTitle: () => <Header name="Todo" />,
+            headerTitle: () => <Header name="" />,
             headerStyle: {
               height: 150,
               borderBottomLeftRadius: 50,
               borderBottomRightRadius: 50,
-              backgroundColor: "#00e4d0",
+              backgroundColor: "#00e47a",
               shadowColor: "#000",
               elevation: 25,
             },
@@ -85,6 +90,9 @@ function App() {
   }
 
   return (
+
+
+    
     <Stack.Navigator
     // screenOptions={{
     //   headerShow: false,
@@ -99,7 +107,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -116,7 +124,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -132,7 +140,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -148,7 +156,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -165,7 +173,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -181,7 +189,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -192,11 +200,13 @@ function App() {
         name="PlayersHome"
         component={PlayersHome}
         options={{
+          headerTitle: () => <Header name="PlayersHome" />,
           headerTitle: () => <Header name="All Players" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
+            backgroundColor: "#00e47a",
             backgroundColor: "#00e4d0",
             shadowColor: "#000",
             elevation: 25,
@@ -214,7 +224,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -230,7 +240,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -246,7 +256,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -263,7 +273,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -279,7 +289,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },
@@ -295,7 +305,7 @@ function App() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#00e4d0",
+            backgroundColor: "#00e47a",
             shadowColor: "#000",
             elevation: 25,
           },

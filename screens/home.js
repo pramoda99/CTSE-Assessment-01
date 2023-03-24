@@ -46,16 +46,24 @@ const Home = () => {
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>
             Hello , {name.firstname}
           </Text>
+
+
           <TouchableOpacity
             onPress={() => {
               firebase.auth().signOut();
             }}
             style={styles.button}
           >
+
+
             <Text style={{ fontSize: 22, fontWeight: "bold" }}>Sign out</Text>
           </TouchableOpacity>
         </View>
+
+
         <View style={styles.formContainer}>
+
+
           <TouchableOpacity
             style={styles.addButton}
              onPress={() => navigation.navigate("PlayersHome")}
@@ -63,6 +71,8 @@ const Home = () => {
             <Text style={styles.buttonText}>Players</Text>
           </TouchableOpacity>
 
+       
+       
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => navigation.navigate("SquadHome")}
