@@ -131,17 +131,17 @@ const AddMatch = () => {
             autoCapitalize="none"
           />
 
-      <Text style={[{ fontWeight: 'bold' }, styles]}>Tournament</Text>
-      <Picker
-        selectedValue={addTournament}
-        onValueChange={(tournament) => setAddTournament(tournament)}
-        style={styles.input}
-      >
-        <Picker.Item style={styles.input} label="Friendly Match" value="Friendly Match" />
-        <Picker.Item style={styles.input} label="League" value="League" />
-        <Picker.Item style={styles.input} label="Cup Match" value="Cup Match" />
-        <Picker.Item style={styles.input} label="Cup Final" value="Cup Final" />
-      </Picker>
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Tournament</Text>
+          <Picker
+            selectedValue={addTournament}
+            onValueChange={(tournament) => setAddTournament(tournament)}
+            style={styles.input}
+          >
+            <Picker.Item style={styles.input} label="Friendly Match" value="Friendly Match" />
+            <Picker.Item style={styles.input} label="League" value="League" />
+            <Picker.Item style={styles.input} label="Cup Match" value="Cup Match" />
+            <Picker.Item style={styles.input} label="Cup Final" value="Cup Final" />
+          </Picker>
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
           <DatePicker
@@ -181,6 +181,26 @@ const AddMatch = () => {
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+
+          <Text>Our Score</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Our Score"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(our) => {
+              if (isNaN(our)) {
+                setError1(true);
+              } else {
+                setError1(false);
+                setAddOur(our);
+              }
+            }}
+            value={addOur}
+            keyboardType="numeric"
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => {
