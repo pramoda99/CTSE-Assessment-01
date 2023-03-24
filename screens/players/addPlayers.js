@@ -135,7 +135,7 @@ const AddPlayers = () => {
             Hello , {name.firstname}
           </Text>
         </View>
-        <Text style={styles.title}>Add New Players</Text>
+        <Text style={styles.title}>Add New Player</Text>
 
         <Text style={styles.title}>Personal Info</Text>
 
@@ -154,7 +154,7 @@ const AddPlayers = () => {
               placeholder="Age "
               placeholderTextColor="#aaaaaa"
               onChangeText={(age) => {
-                if (isNaN(our)) {
+                if (isNaN(age)) {
                   setError1(true);
                 } else {
                   setError1(false);
