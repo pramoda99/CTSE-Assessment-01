@@ -157,7 +157,7 @@ const PlayersHome = () => {
             onPress={() => navigation.navigate("AddPlayers")}
           >
            
-            <Text style={styles.buttonText}>Add players</Text>
+            <Text style={styles.buttonText}>Add New Player</Text>
           </TouchableOpacity>
         </View>
 
@@ -181,50 +181,16 @@ const PlayersHome = () => {
                   style={styles.icon}
                 />
 
-
-
-                <View style={styles.innerContainer}>
-                  <Text style={styles.itemHeading}>
-                    {item.pName}
-                    </Text>
-                    <Text style={styles.itemHeading}>
-                     {item.age}
-                     </Text>
-                     <Text style={styles.itemHeading}>
-                      {item.height }
-                      </Text>
-                      <Text style={styles.itemHeading}>
-                       {item.foot}
-                       </Text>
-                       <Text style={styles.itemHeading}>
-                        {item.position}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.goals}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.assists}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.sheets}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.attacking}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.defending}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.dribbling}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.passing}
-                  </Text>
-                  <Text style={styles.itemHeading}>
-                        {item.physical}
-                        
-                  </Text>
-                </View>
+                  {/* <Pressable onPress={() => navigation.navigate('DetailPlayers', { item })}> */}
+                  <View style={styles.noteView}>
+                      <Text style={styles.title}>{item.pName}</Text>
+                      <Text style={styles.subtitle}>Position: {item.position}</Text>
+                      <Text style={styles.subtitle}>Jercy No: {item.height}</Text>
+                      <Text style={styles.subtitle}>Goals: {item.goals}</Text>
+                      <Text style={styles.subtitle}>Assists: {item.assists}</Text>
+                      <Text style={styles.subtitle}>Clean Sheets: {item.sheets}</Text>
+                    </View>
+                  {/* </Pressable> */}
               </Pressable>
             </View>
           )}
@@ -245,7 +211,7 @@ const styles = StyleSheet.create({
     margin: 5,
     marginHorizontal: 10,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     shadowColor: "blue",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -253,15 +219,28 @@ const styles = StyleSheet.create({
     elevation: 7,
   },
   innerContainer: {
-    alignItems: "center",
+    alignItems: "flex-start",
     flexDirection: "column",
     marginLeft: 45,
   },
 
-  itemHeading: {
-    fontWeight: "bold",
-    fontSize: 18,
-    marginRight: 22,
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+
+  noteView: {
+    flex: 1,
+    backgroundColor: '#fff',
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 7,
+    alignItems: 'center'
   },
 
   formContainer: {
@@ -284,7 +263,7 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: "white",
-    fontSize: 20,
+    fontSize: 15,
   },
   icon: {
     marginTop: 5,
@@ -309,4 +288,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 20,
   },
+
+  subtitle: {
+    fontSize: 16,
+    marginTop: 5,
+  }
 });

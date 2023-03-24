@@ -91,9 +91,9 @@ const AddPlayers = () => {
         height: addHeight,
         foot: addFoot,
         position: addPosition,
-        goals: addGoals,
-        assists: addAssists,
-        sheets: addSheets,
+        goals: "0",
+        assists: "0",
+        sheets: "0",
         attacking: addAttacking,
         dribbling: addDribbling,
         defending: addDefending,
@@ -129,8 +129,8 @@ const AddPlayers = () => {
     <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Personal Info</Text>
-
+          {/* <Text style={styles.title}>Personal Info</Text> */}
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Player Name</Text>
           <TextInput
             style={styles.input}
             placeholder="Player Name "
@@ -141,6 +141,7 @@ const AddPlayers = () => {
             autoCapitalize="none"
           />
 
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Age</Text>
           <TextInput
             style={styles.input}
             placeholder="Age "
@@ -160,9 +161,33 @@ const AddPlayers = () => {
           />
           {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
 
+
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Preferred Foot</Text>
           <TextInput
             style={styles.input}
-            placeholder="Height "
+            placeholder="Preferred Foot"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(foot) => setAddFoot(foot)}
+            value={addFoot}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Position</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Position "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(position) => setAddPosition(position)}
+            value={addPosition}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Jercy No</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Jercy No "
             placeholderTextColor="#aaaaaa"
             onChangeText={(height) => {
               if (isNaN(height)) {
@@ -179,123 +204,6 @@ const AddPlayers = () => {
           />
           {error2 && <Text style={styles.error}>Please enter a valid number</Text>}
 
-          <TextInput
-            style={styles.input}
-            placeholder="Foot"
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(foot) => setAddFoot(foot)}
-            value={addFoot}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Position "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(position) => setAddPosition(position)}
-            value={addPosition}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-          <Text style={styles.title}>Stats</Text>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Goals "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(goals) => {
-              if (isNaN(goals)) {
-                setError3(true);
-              } else {
-                setError3(false);
-                setAddGoals(goals)
-              }
-            }}
-            value={addGoals}
-            keyboardType="numeric"
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-          {error3 && <Text style={styles.error}>Please enter a valid number</Text>}
-
-          <TextInput
-            style={styles.input}
-            placeholder="Assists "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(assists) => setAddAssists(assists)}
-            value={addAssists}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Clean Sheets "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(sheets) => setAddSheets(sheets)}
-            value={addSheets}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
- 
-          <Text style={styles.title}>Skills</Text>     
-          {/* <Image
-          source={require("../../assets/splash.png")}
-          style={styles.image}
-          />     */}
-          <TextInput
-            style={styles.input}
-            placeholder="Attacking "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(attacking) => setAddAttacking(attacking)}
-            value={addAttacking}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Defending "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(defending) => setAddDefending(defending)}
-            value={addDefending}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Dribbling "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(dribbling) => setAddDribbling(dribbling)}
-            value={addDribbling}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Passing "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(passing) => setAddPassing(passing)}
-            value={addPassing}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Physical "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(physical) => setAddPhysical(physical)}
-            value={addPhysical}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-
-
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => {
@@ -303,7 +211,7 @@ const AddPlayers = () => {
               navigation.navigate("PlayersHome");
             }}
           >
-            <Text style={styles.buttonText}>Add</Text>
+            <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -387,22 +295,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 20,
   },
-    image: {
-      width: 120,
-      height: 120,
-    },
+  image: {
+    width: 120,
+    height: 120,
+  },
 
-    inputContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      borderWidth: 1,
-      borderColor: "#ccc",
-      borderRadius: 5,
-      padding: 10,
-    },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+  },
 
-    error: {
-      color: 'red',
-    },
-  
+  error: {
+    color: 'red',
+  },
+
 });
