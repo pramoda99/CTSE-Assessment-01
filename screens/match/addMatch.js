@@ -125,11 +125,21 @@ const AddMatch = () => {
             style={styles.input}
             placeholder="Title "
             placeholderTextColor="#aaaaaa"
-            onChangeText={(title) => setAddTitle(title)}
+            onChangeText={(title) => {
+              const regex = /^[a-zA-Z]*$/;
+    if (regex.test(title) || addTitle === '') {
+      setAddTitle(title);
+            }}
+              }
             value={addTitle}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+           {!/^[a-zA-Z]*$/.test(addTitle) && addTitle !== '' && (
+        <Text style={{ color: 'red'}}>
+          Please enter only characters without numbers
+        </Text>
+      )}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Tournament</Text>
          
@@ -198,7 +208,7 @@ const AddMatch = () => {
             autoCapitalize="none"
           />
 
-          <Text>Our Score</Text>
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Our Score</Text>
           <TextInput
             style={styles.input}
             placeholder="Our Score"

@@ -175,11 +175,21 @@ import {
               style={styles.input}
               placeholder="Best Striker of the day"
               placeholderTextColor="#aaaaaa"
-              onChangeText={(striker) => setAddStriker(striker)}
+              onChangeText={(striker) => {
+                const regex = /^[a-zA-Z]*$/;
+                if (regex.test(striker) || addStriker === '') {
+                setAddStriker(striker)}
+              }}
               value={addStriker}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
+{!/^[a-zA-Z]*$/.test(addStriker) && addStriker !== '' && (
+        <Text style={{ color: 'red'}}>
+          Please enter only characters without numbers
+        </Text>
+      )}
+
    <Text style={[{ fontWeight: 'bold' }, styles]}>Midfielder</Text>
   <TextInput
               style={styles.input}

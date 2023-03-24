@@ -268,7 +268,7 @@ import {
       height: 47,
       borderRadius: 5,
       backgroundColor: "#788eec",
-      width: 80,
+      width: 100,
       alignItems: "center",
       justifyContent: "center",
     },

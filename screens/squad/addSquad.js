@@ -19,6 +19,11 @@ const AddSquads = () => {
   const [name, setName] = useState("");
   const [squad, setSquad] = useState([]);
   const squadRef = firebase.firestore().collection("squad");
+  const [error1, setError1] = useState(false);
+  const [error2, setError2] = useState(false);
+  const [error3, setError3] = useState(false);
+  const [error4, setError4] = useState(false);
+  const [error5, setError5] = useState(false);
   const [addSName, setAddSName] = useState("");
   const [addFormation, setAddFormation] = useState("");
   const [addFSquad, setAddFSquad] = useState("");
@@ -140,55 +145,87 @@ const AddSquads = () => {
             style={styles.input}
             placeholder="Captain "
             placeholderTextColor="#aaaaaa"
-            onChangeText={(captain) => setAddCaptain(captain)}
+            onChangeText={(captain) => {
+              if (isNaN(captain)) {
+                setError1(true);
+              } else {
+                setError1(false);
+              setAddCaptain(captain)
+            }
+          }}
             value={addCaptain}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+           {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Free-Kick Taker (jersey no)</Text>
           <TextInput
             style={styles.input}
             placeholder="Free-kick Taker "
             placeholderTextColor="#aaaaaa"
-            onChangeText={(fTaker) => setAddFTaker(fTaker)}
+            onChangeText={(fTaker) => {
+              if (isNaN(fTaker)) {
+                setError2(true);
+              } else {
+                setError2(false);
+              setAddFTaker(fTaker)}}}
             value={addFTaker}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+           {error2 && <Text style={styles.error}>Please enter a valid number</Text>}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Penalty Taker (jersey no)</Text>
           <TextInput
             style={styles.input}
             placeholder="Penalty Taker "
             placeholderTextColor="#aaaaaa"
-            onChangeText={(pTaker) => setAddPTaker(pTaker)}
+            onChangeText={(pTaker) => {
+              if (isNaN(pTaker)) {
+                setError3(true);
+              } else {
+                setError3(false);
+            setAddPTaker(pTaker)}}}
             value={addPTaker}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+           {error3 && <Text style={styles.error}>Please enter a valid number</Text>}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Left Corner Taker (jersey no)</Text>
           <TextInput
             style={styles.input}
             placeholder="Left corner taker "
             placeholderTextColor="#aaaaaa"
-            onChangeText={(leftTaker) => setAddLCTaker(leftTaker)}
+            onChangeText={(leftTaker) => {
+              if (isNaN(leftTaker)) {
+                setError4(true);
+              } else {
+                setError4(false);
+              setAddLCTaker(leftTaker)}}}
             value={addLCTaker}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+           {error4 && <Text style={styles.error}>Please enter a valid number</Text>}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Right Corner Taker (jersey no)</Text>
           <TextInput
             style={styles.input}
             placeholder="Right corner Taker "
             placeholderTextColor="#aaaaaa"
-            onChangeText={(rightTaker) => setAddRCTaker(rightTaker)}
+            onChangeText={(rightTaker) => {
+              if (isNaN(rightTaker)) {
+                setError5(true);
+              } else {
+                setError5(false);
+              setAddRCTaker(rightTaker)}}}
             value={addRCTaker}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+           {error5 && <Text style={styles.error}>Please enter a valid number</Text>}
 
           <TouchableOpacity style={styles.addButton}
             onPress={() => {
@@ -280,5 +317,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 20,
+  },
+  error: {
+    color: 'red',
   },
 });

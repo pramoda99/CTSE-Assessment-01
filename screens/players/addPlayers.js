@@ -135,11 +135,20 @@ const AddPlayers = () => {
             style={styles.input}
             placeholder="Player Name "
             placeholderTextColor="#aaaaaa"
-            onChangeText={(pName) => setAddPName(pName)}
+            onChangeText={(pName) => {
+              const regex = /^[a-zA-Z]*$/;
+    if (regex.test(pName) || addPName === '') {
+      setAddPName(pName);
+            }}}
             value={addPName}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
+          {!/^[a-zA-Z]*$/.test(addPName) && addPName !== '' && (
+        <Text style={{ color: 'red'}}>
+          Please enter only characters without numbers
+        </Text>
+      )}
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Age</Text>
           <TextInput
