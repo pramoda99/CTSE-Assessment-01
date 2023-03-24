@@ -43,39 +43,37 @@ const DetailTraining = ({ route }) => {
 
   return (
     <ScrollView>
-    <View style={styles.container}>
       
+    <View style={styles.container}>
+    <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
       <TextInput
       style={styles.textField}
       onChangeText={onChangeTDateText}
       value={textTDate}
-      
+      editable={false}
       
     />
 
+<Text style={[{ fontWeight: 'bold' }, styles]}>Session Time</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeTTimeText}
       value={textTTime}
-      
+      editable={false}
       textContentType="number"
     /> 
 
+<Text style={[{ fontWeight: 'bold' }, styles]}>Focus on</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeFocusText}
       value={textFocus}
       
+      textContentType="number"
     /> 
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeSessionText}
-      value={textSession}
-      
- 
-    />
 
+<Text style={[{ fontWeight: 'bold' }, styles]}>Striker</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeStrikerText}
@@ -83,14 +81,14 @@ const DetailTraining = ({ route }) => {
       
       textContentType="number"
     /> 
-
+<Text style={[{ fontWeight: 'bold' }, styles]}>Midfielder</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeMidfielderText}
       value={textMidfielder}
       
     /> 
-
+<Text style={[{ fontWeight: 'bold' }, styles]}>Defender</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeDefenderText}
@@ -98,7 +96,7 @@ const DetailTraining = ({ route }) => {
       
       
     />
-
+<Text style={[{ fontWeight: 'bold' }, styles]}>Goalkeeper</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeGoalkeeperText}
@@ -106,7 +104,7 @@ const DetailTraining = ({ route }) => {
       
       textContentType="number"
     /> 
-
+<Text style={[{ fontWeight: 'bold' }, styles]}>Manager rating for the session</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeRatingText}

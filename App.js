@@ -258,7 +258,7 @@ function App() {
         name="AddTraining"
         component={AddTraining}
         options={{
-          headerTitle: () => <Header name="AddTraining" />,
+          headerTitle: () => <Header name="Add Training Session" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -274,7 +274,7 @@ function App() {
         name="DetailTraining"
         component={DetailTraining}
         options={{
-          headerTitle: () => <Header name="DetailTraining" />,
+          headerTitle: () => <Header name="Update Training Session" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -290,7 +290,7 @@ function App() {
         name="TrainingHome"
         component={TrainingHome}
         options={{
-          headerTitle: () => <Header name="TrainingHome" />,
+          headerTitle: () => <Header name="Trainings" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,

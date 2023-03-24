@@ -119,16 +119,8 @@ import {
       <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 1 }}>
-          <View
-            style={{ margin: 10, alignItems: "center", justifyContent: "center" }}
-          >
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-              Hello , {name.firstname}
-            </Text>
-        
-          </View>
-          <Text style={styles.title}>Add New training</Text>
            
+        <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
           <DatePicker
            mode="date" //The enum of date, datetime and time
            placeholder="Select Date"
@@ -153,7 +145,8 @@ import {
               date={addTDate}
               
             /> 
-
+ 
+ <Text style={[{ fontWeight: 'bold' }, styles]}>Session Time</Text>
          <TextInput
               style={styles.input}
               placeholder="Training Time "
@@ -165,6 +158,7 @@ import {
               textContentType="number"
             /> 
    
+   <Text style={[{ fontWeight: 'bold' }, styles]}>Focus on</Text>
    <TextInput
               style={styles.input}
               placeholder="Focus on "
@@ -175,6 +169,7 @@ import {
               autoCapitalize="none"
             /> 
 
+<Text style={[{ fontWeight: 'bold' }, styles]}>Striker</Text>
         <TextInput
               style={styles.input}
               placeholder="Best Striker of the day"
@@ -184,10 +179,10 @@ import {
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
-  
+   <Text style={[{ fontWeight: 'bold' }, styles]}>Midfielder</Text>
   <TextInput
               style={styles.input}
-              placeholder="Best midfielder"
+              placeholder="Best midfielder of the day"
               placeholderTextColor="#aaaaaa"
               onChangeText={(midfielder) => setAddMidfielder(midfielder)}
               value={addMidfielder}
@@ -195,6 +190,7 @@ import {
               autoCapitalize="none"
             />
 
+<Text style={[{ fontWeight: 'bold' }, styles]}>Defender</Text>
 <TextInput
               style={styles.input}
               placeholder="Best defender of the day"
@@ -205,6 +201,7 @@ import {
               autoCapitalize="none"
             />
 
+<Text style={[{ fontWeight: 'bold' }, styles]}>Goalkeeper</Text>
 <TextInput
               style={styles.input}
               placeholder="Best goalkeeper of the day"
@@ -215,6 +212,7 @@ import {
               autoCapitalize="none"
             />
 
+<Text style={[{ fontWeight: 'bold' }, styles]}>Manager rating for the session</Text>
 <TextInput
               style={styles.input}
               placeholder="Rating"

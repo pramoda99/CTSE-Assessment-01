@@ -147,7 +147,7 @@ import {
               onPress={() => navigation.navigate("AddTraining")}
             >
              
-              <Text style={styles.buttonText}>Add Training</Text>
+              <Text style={styles.buttonText}>Add Training Session</Text>
             </TouchableOpacity>
           </View>
   
@@ -170,28 +170,21 @@ import {
                     onPress={() => deleteTraining(item)}
                     style={styles.icon}
                   />
+
+                    {/* <Pressable onPress={() => navigation.navigate('DetailMatch', { item })}> */}
+                    <View style={styles.noteView}>
+                      <Text style={styles.title}>{item.tDate}</Text>
+                      <Text style={styles.subtitle}>Focus on: {item.focus}</Text>
+                      <Text style={styles.subtitle}>Best Striker of the session: {item.striker}</Text>
+                      <Text style={styles.subtitle}>Best Midfielder of the session: {item.midfielder}</Text>
+                      <Text style={styles.subtitle}>Best Defender of the session: {item.defender}</Text>
+                      <Text style={styles.subtitle}>Best Goalkeeper of the session: {item.goalkeeper}</Text>
+                      <Text style={styles.subtitle}>Manager Rating for the session: {item.rating}</Text>
+    
+                    </View>
+                  {/* </Pressable> */}
   
-                  <View style={styles.innerContainer}>
-                  <Text style={styles.itemHeading}>
-                    {item.tDate}
-                    </Text>
-                    <Text style={styles.itemHeading}>
-                    {item.tTime}
-                    </Text>
-                    <Text style={styles.itemHeading}>
-                    {item.focus}
-                    </Text>
-                    <Text style={styles.itemHeading}>
-                    {item.striker}
-                    </Text>
-                    <Text style={styles.itemHeading}>
-                    {item.midfielder}
-                    </Text>
-                    <Text style={styles.itemHeading}>
-                    {item.rating}
-                    </Text>
                   
-                  </View>
                 </Pressable>
               </View>
             )}
@@ -212,7 +205,7 @@ import {
       margin: 5,
       marginHorizontal: 10,
       flexDirection: "row",
-      alignItems: "center",
+      alignItems: "flex-start",
       shadowColor: "blue",
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.8,
@@ -220,15 +213,28 @@ import {
       elevation: 7,
     },
     innerContainer: {
-      alignItems: "center",
+      alignItems: "flex-start",
       flexDirection: "column",
       marginLeft: 45,
     },
   
-    itemHeading: {
-      fontWeight: "bold",
-      fontSize: 18,
-      marginRight: 22,
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold'
+    },
+  
+    noteView: {
+      flex: 1,
+      backgroundColor: '#fff',
+      margin: 10,
+      padding: 10,
+      borderRadius: 10,
+      shadowColor: 'red',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,
+      elevation: 7,
+      alignItems: 'center'
     },
   
     formContainer: {
@@ -251,7 +257,7 @@ import {
   
     buttonText: {
       color: "white",
-      fontSize: 20,
+      fontSize: 15,
     },
     icon: {
       marginTop: 5,
@@ -276,5 +282,10 @@ import {
       justifyContent: "center",
       borderRadius: 20,
     },
+  
+    subtitle: {
+      fontSize: 16,
+      marginTop: 5
+    }
   });
   
