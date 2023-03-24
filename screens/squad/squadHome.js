@@ -167,14 +167,7 @@ const SquadHome = () => {
                   style={styles.icon}
                 />
 
-                <FontAwesome
-                  name="eye"
-                  color="blue"
-                  onPress={() => navigation.navigate("#", { item })}
-                  style={styles.icon}
-                />
-
-                <View style={styles.innerContainer}>
+                              <View style={styles.innerContainer}>
                   <Text style={styles.itemHeading}>
                     {item.sName}
                   </Text>

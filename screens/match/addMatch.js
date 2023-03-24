@@ -25,7 +25,7 @@ const AddMatch = () => {
   const [error2, setError2] = useState(false);
   const [addTitle, setAddTitle] = useState("");
   const [addTournament, setAddTournament] = useState("");
-  const [addDate, setAddDate] = useState("09-10-2020");
+  const [addDate, setAddDate] = useState("");
   const [addKick, setAddKick] = useState("");
   const [addOur, setAddOur] = useState("");
   const [addOpponent, setAddOpponent] = useState("");
@@ -130,6 +130,7 @@ const AddMatch = () => {
         </View>
         <Text style={styles.title}>Create Match Records</Text>
 
+        <Text>Title</Text>
         <TextInput
               style={styles.input}
               placeholder="Title "
@@ -140,6 +141,7 @@ const AddMatch = () => {
               autoCapitalize="none"
             />
 
+<Text>Tournament</Text>
 <TextInput
               style={styles.input}
               placeholder="Tournament "
@@ -151,9 +153,11 @@ const AddMatch = () => {
              
             /> 
    
+   <Text>Date</Text>
    <DatePicker
+   style={styles.inputDate}
            mode="date" //The enum of date, datetime and time
-           placeholder="select date"
+           placeholder="Select Date"
            format="DD-MM-YYYY"
            minDate="01-01-2020"
            maxDate="01-01-2025"
@@ -176,6 +180,7 @@ const AddMatch = () => {
               
             /> 
 
+<Text>Kick off</Text>
 <TextInput
               style={styles.input}
               placeholder="Kick off"
@@ -187,6 +192,7 @@ const AddMatch = () => {
               autoCapitalize="none"
             />
 
+<Text>Our Score</Text>
 <TextInput
               style={styles.input}
               placeholder="Our Score"
@@ -205,6 +211,7 @@ const AddMatch = () => {
             />
              {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
             
+             <Text>Opponent Score</Text>       
 <TextInput
               style={styles.input}
               placeholder="Opponent Score"
@@ -222,6 +229,7 @@ const AddMatch = () => {
             />
              {error2 && <Text style={styles.error}>Please enter a valid number</Text>}
 
+             <Text>Result</Text>     
         <TextInput
               style={styles.input}
               placeholder="Result"
@@ -232,6 +240,7 @@ const AddMatch = () => {
               autoCapitalize="none"
             />
 
+<Text>Score Sheet</Text>     
 <TextInput
               style={styles.input}
               placeholder="Score Sheet "
@@ -242,6 +251,7 @@ const AddMatch = () => {
               autoCapitalize="none"
             />
 
+<Text>Player of the Match</Text>     
 <TextInput
               style={styles.input}
               placeholder="Player of the Match "
@@ -252,6 +262,7 @@ const AddMatch = () => {
               autoCapitalize="none"
             />
 
+<Text>Manager Ratings</Text>     
 <TextInput
               style={styles.input}
               placeholder="Manager Ratings "
@@ -325,6 +336,15 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: 5,
     marginBottom: 16,
+  },
+
+  inputDate:{
+    width: "80%",
+    height: 40,
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 16,
+    borderColor: "#ccc",
   },
 
   buttonText: {

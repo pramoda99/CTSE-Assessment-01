@@ -181,12 +181,7 @@ const PlayersHome = () => {
                   style={styles.icon}
                 />
 
-<FontAwesome
-                  name="eye"
-                  color="blue"
-                  onPress={() => navigation.navigate("ViewPlayers", { item })}
-                  style={styles.icon}
-                />
+
 
                 <View style={styles.innerContainer}>
                   <Text style={styles.itemHeading}>

@@ -10,6 +10,7 @@ import {
     Pressable,
     ScrollView,
   } from "react-native";
+  import DatePicker from 'react-native-datepicker';
   import React, { useEffect, useState } from "react";
   import { firebase } from "../../config";
   import { FontAwesome } from "@expo/vector-icons";
@@ -18,6 +19,7 @@ import {
   const AddTraining = () => {
     const [name, setName] = useState("");
     const [training, setTraining] = useState([]);
+    const [error1, setError1] = useState(false);
     const trainingRef = firebase.firestore().collection("training");
     const [addTDate, setAddTDate] = useState("");
   const [addTTime, setAddTTime] = useState("");
@@ -127,17 +129,32 @@ import {
           </View>
           <Text style={styles.title}>Add New training</Text>
            
-          <TextInput
-              style={styles.input}
-              placeholder="Training Date "
-              placeholderTextColor="#aaaaaa"
+          <DatePicker
+           mode="date" //The enum of date, datetime and time
+           placeholder="Select Date"
+           format="DD-MM-YYYY"
+           minDate="01-01-2020"
+           maxDate="01-01-2025"
+           confirmBtnText="Confirm"
+           cancelBtnText="Cancel"
+           customStyles={{
+             dateIcon: {
+               //display: 'none',
+               position: 'absolute',
+               left: 0,
+               top: 4,
+               marginLeft: 0,
+             },
+             dateInput: {
+               marginLeft: 36,
+             },
+           }}
               onChangeText={(tDate) => setAddTDate(tDate)}
-              value={addTDate}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+              date={addTDate}
+              
+            /> 
 
-<TextInput
+         <TextInput
               style={styles.input}
               placeholder="Training Time "
               placeholderTextColor="#aaaaaa"
@@ -202,11 +219,18 @@ import {
               style={styles.input}
               placeholder="Rating"
               placeholderTextColor="#aaaaaa"
-              onChangeText={(rating) => setAddRating(rating)}
+              onChangeText={(rating) => {
+                if (isNaN(rating)) {
+                  setError1(true);
+                } else {
+                  setError1(false);
+                  setAddRating(rating);
+                }}}
               value={addRating}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
             />
+             {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
 
             <TouchableOpacity style={styles.addButton}
              onPress={() => {
@@ -298,6 +322,10 @@ import {
       alignItems: "center",
       justifyContent: "center",
       borderRadius: 20,
+    },
+
+    error: {
+      color: 'red',
     },
   });
   
