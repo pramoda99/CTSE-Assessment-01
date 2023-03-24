@@ -115,7 +115,7 @@ export default DetailSquad;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 80,
+    marginTop: 30,
     marginLeft: 15,
     marginRight: 15,
   },
