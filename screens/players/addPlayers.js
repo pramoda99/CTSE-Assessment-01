@@ -9,6 +9,7 @@ import {
   Keyboard,
   Pressable,
   ScrollView,
+  Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { firebase } from "../../config";
@@ -18,10 +19,10 @@ import { useNavigation } from "@react-navigation/native";
 const AddPlayers = () => {
   const [name, setName] = useState("");
   const [players, setPlayers] = useState([]);
- const playerRef = firebase.firestore().collection("players");
- const [error1, setError1] = useState(false);
- const [error2, setError2] = useState(false);
- const [error3, setError3] = useState(false);
+  const playerRef = firebase.firestore().collection("players");
+  const [error1, setError1] = useState(false);
+  const [error2, setError2] = useState(false);
+  const [error3, setError3] = useState(false);
   const [addPName, setAddPName] = useState("");
   const [addAge, setAddAge] = useState("");
   const [addHeight, setAddHeight] = useState("");
@@ -55,9 +56,9 @@ const AddPlayers = () => {
     playerRef.orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
       const players = [];
       querySnapshot.forEach((doc) => {
-        const { pName,age,height,foot,position,goals,assists,sheets, attacking,dribbling,
-            defending,
-            passing , physical} = doc.data();
+        const { pName, age, height, foot, position, goals, assists, sheets, attacking, dribbling,
+          defending,
+          passing, physical } = doc.data();
         players.push({
           id: doc.id,
           pName,
@@ -76,7 +77,7 @@ const AddPlayers = () => {
         });
       });
       setPlayers(players);
-      
+
     });
   }, []);
 
@@ -86,18 +87,18 @@ const AddPlayers = () => {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
       const data = {
         pName: addPName,
-        age:addAge,
-        height:addHeight,
-        foot:addFoot,
-        position:addPosition,
-        goals:addGoals,
-        assists:addAssists,
-        sheets:addSheets,
-        attacking:addAttacking,
-        dribbling:addDribbling,
-        defending:addDefending,
-        passing:addPassing,
-       physical:addPhysical,
+        age: addAge,
+        height: addHeight,
+        foot: addFoot,
+        position: addPosition,
+        goals: addGoals,
+        assists: addAssists,
+        sheets: addSheets,
+        attacking: addAttacking,
+        dribbling: addDribbling,
+        defending: addDefending,
+        passing: addPassing,
+        physical: addPhysical,
         createdAt: timestamp,
       };
       playerRef
@@ -126,188 +127,186 @@ const AddPlayers = () => {
 
   return (
     <ScrollView>
-    <SafeAreaView style={styles.container}>
-      <View style={{ flex: 1 }}>
-        <View
-          style={{ margin: 10, alignItems: "center", justifyContent: "center" }}
-        >
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Hello , {name.firstname}
-          </Text>
-        </View>
-        <Text style={styles.title}>Add New Players</Text>
+      <SafeAreaView style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.title}>Personal Info</Text>
 
-        <Text style={styles.title}>Personal Info</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Player Name "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(pName) => setAddPName(pName)}
+            value={addPName}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-        <TextInput
-              style={styles.input}
-              placeholder="Add a Player Name "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(pName) => setAddPName(pName)}
-              value={addPName}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Age "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(age) => {
+              if (isNaN(age)) {
+                setError1(true);
+              } else {
+                setError1(false);
+                setAddAge(age)
+              }
+            }}
+            value={addAge}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+            keyboardType="numeric"
+          />
+          {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
 
-<TextInput
-              style={styles.input}
-              placeholder="Age "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(age) => {
-                if (isNaN(our)) {
-                  setError1(true);
-                } else {
-                  setError1(false);
-                  setAddAge(age)
-                }}}
-              value={addAge}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-              keyboardType="numeric"
-            /> 
-            {error1 && <Text style={styles.error}>Please enter a valid number</Text>}
-   
-   <TextInput
-              style={styles.input}
-              placeholder="Height "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(height) =>  {
-                if (isNaN(height)) {
-                  setError2(true);
-                } else {
-                  setError2(false);
+          <TextInput
+            style={styles.input}
+            placeholder="Height "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(height) => {
+              if (isNaN(height)) {
+                setError2(true);
+              } else {
+                setError2(false);
                 setAddHeight(height)
-                }}}
-              value={addHeight}
-              keyboardType="numeric"
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            /> 
-            {error2 && <Text style={styles.error}>Please enter a valid number</Text>}
+              }
+            }}
+            value={addHeight}
+            keyboardType="numeric"
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          {error2 && <Text style={styles.error}>Please enter a valid number</Text>}
 
-        <TextInput
-              style={styles.input}
-              placeholder="Foot"
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(foot) => setAddFoot(foot)}
-              value={addFoot}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Foot"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(foot) => setAddFoot(foot)}
+            value={addFoot}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-<TextInput
-              style={styles.input}
-              placeholder="Position "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(position) => setAddPosition(position)}
-              value={addPosition}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Position "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(position) => setAddPosition(position)}
+            value={addPosition}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-<Text style={styles.title}>Stats</Text>
+          <Text style={styles.title}>Stats</Text>
 
-<TextInput
-              style={styles.input}
-              placeholder="Goals "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(goals) => {
-                if (isNaN(goals)) {
-                  setError3(true);
-                } else {
-                  setError3(false);
-                setAddGoals(goals)}}}
-              value={addGoals}
-              keyboardType="numeric"
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-             {error3 && <Text style={styles.error}>Please enter a valid number</Text>}
+          <TextInput
+            style={styles.input}
+            placeholder="Goals "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(goals) => {
+              if (isNaN(goals)) {
+                setError3(true);
+              } else {
+                setError3(false);
+                setAddGoals(goals)
+              }
+            }}
+            value={addGoals}
+            keyboardType="numeric"
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          {error3 && <Text style={styles.error}>Please enter a valid number</Text>}
 
-<TextInput
-              style={styles.input}
-              placeholder="Assists "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(assists) => setAddAssists(assists)}
-              value={addAssists}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Assists "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(assists) => setAddAssists(assists)}
+            value={addAssists}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-<TextInput
-              style={styles.input}
-              placeholder="Clean Sheets "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(sheets) => setAddSheets(sheets)}
-              value={addSheets}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Clean Sheets "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(sheets) => setAddSheets(sheets)}
+            value={addSheets}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+ 
+          <Text style={styles.title}>Skills</Text>     
+          {/* <Image
+          source={require("../../assets/splash.png")}
+          style={styles.image}
+          />     */}
+          <TextInput
+            style={styles.input}
+            placeholder="Attacking "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(attacking) => setAddAttacking(attacking)}
+            value={addAttacking}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-<Text style={styles.title}>Skills</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Defending "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(defending) => setAddDefending(defending)}
+            value={addDefending}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-<TextInput
-              style={styles.input}
-              placeholder="Attacking "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(attacking) => setAddAttacking(attacking)}
-              value={addAttacking}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Dribbling "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(dribbling) => setAddDribbling(dribbling)}
+            value={addDribbling}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-<TextInput
-              style={styles.input}
-              placeholder="Defending "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(defending) => setAddDefending(defending)}
-              value={addDefending}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Passing "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(passing) => setAddPassing(passing)}
+            value={addPassing}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
-<TextInput
-              style={styles.input}
-              placeholder="Dribbling "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(dribbling) => setAddDribbling(dribbling)}
-              value={addDribbling}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-
-<TextInput
-              style={styles.input}
-              placeholder="Passing "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(passing) => setAddPassing(passing)}
-              value={addPassing}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-
-<TextInput
-              style={styles.input}
-              placeholder="Physical "
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(physical) => setAddPhysical(physical)}
-              value={addPhysical}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
+          <TextInput
+            style={styles.input}
+            placeholder="Physical "
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(physical) => setAddPhysical(physical)}
+            value={addPhysical}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
 
 
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            addPlayer();
-            navigation.navigate("PlayersHome");
-          }}
-        >
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => {
+              addPlayer();
+              navigation.navigate("PlayersHome");
+            }}
+          >
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     </ScrollView>
   );
 };
@@ -387,5 +386,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 20,
+
+    image: {
+      width: 120,
+      height: 120,
+    },
+
+    inputContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      borderWidth: 1,
+      borderColor: "#ccc",
+      borderRadius: 5,
+      padding: 10,
+    },
   },
 });

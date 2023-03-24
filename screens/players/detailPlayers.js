@@ -26,18 +26,18 @@ const DetailPlayers = ({ route }) => {
         .doc(route.params.item.id)
         .update({
           pName: textPName,
-          age:textAge,
-        height:textHeight,
-        foot:textFoot,
-        position:textPosition,
-        goals:textGoals,
-        assists:textAssists,
-        sheets:textSheets,
-        attacking:textAttacking,
-        dribbling:textDribbling,
-        defending:textDefending,
-        passing:textPassing,
-       physical:textPhysical,
+          age: textAge,
+          height: textHeight,
+          foot: textFoot,
+          position: textPosition,
+          goals: textGoals,
+          assists: textAssists,
+          sheets: textSheets,
+          attacking: textAttacking,
+          dribbling: textDribbling,
+          defending: textDefending,
+          passing: textPassing,
+          physical: textPhysical,
         })
         .then(() => {
           navigation.navigate("PlayersHome");
@@ -50,119 +50,119 @@ const DetailPlayers = ({ route }) => {
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-     
+      <View style={styles.container}>
 
-<Text style={styles.title}>Update Players</Text>
 
-<Text style={styles.title}>Personal Info</Text>
+        <Text style={styles.title}>Update Players</Text>
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangePNameText}
-      value={textPName}
-      
-      
-    />
+        <Text style={styles.title}>Personal Info</Text>
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeAgeText}
-      value={textAge}
-      
-      textContentType="number"
-    /> 
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangePNameText}
+          value={textPName}
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeHeightText}
-      value={textHeight}
-      
-    /> 
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangeFootText}
-      value={textFoot}
-      
-    />
+        />
 
-<TextInput
-      style={styles.textField}
-      onChangeText={onChangePositionText}
-      value={textPosition}
-      
-    />
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeAgeText}
+          value={textAge}
 
-<Text style={styles.title}>Stats</Text>
+          textContentType="number"
+        />
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeGoalsText}
-              value={textGoals}
-              
-            />
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeHeightText}
+          value={textHeight}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeAssistsText}
-              value={textAssists}
-              
-            />
+        />
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeSheetsText}
-              value={textSheets}
-              
-            />
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeFootText}
+          value={textFoot}
 
-<Text style={styles.title}>Skills</Text>
+        />
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeAttackingText}
-              value={textAttacking}
-              
-            />
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangePositionText}
+          value={textPosition}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeDefendingText}
-              value={textDefending}
-              
-            />
+        />
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangeDribblingText}
-              value={textDribbling}
-              
-            />
+        <Text style={styles.title}>Stats</Text>
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangePassingText}
-              value={textPassing}
-              
-            />
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeGoalsText}
+          value={textGoals}
 
-<TextInput
-              style={styles.textField}
-              onChangeText={onChangePhysicalText}
-              value={textPhysical}
-              
-            />
+        />
 
-      <Pressable
-        style={styles.buttonUpdate}
-        onPress={() => {
-          updatePlayer();
-        }}
-      >
-        <Text>Update Player</Text>
-      </Pressable>
-    </View>
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeAssistsText}
+          value={textAssists}
+
+        />
+
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeSheetsText}
+          value={textSheets}
+
+        />
+
+        <Text style={styles.title}>Skills</Text>
+
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeAttackingText}
+          value={textAttacking}
+
+        />
+
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeDefendingText}
+          value={textDefending}
+
+        />
+
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangeDribblingText}
+          value={textDribbling}
+
+        />
+
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangePassingText}
+          value={textPassing}
+
+        />
+
+        <TextInput
+          style={styles.textField}
+          onChangeText={onChangePhysicalText}
+          value={textPhysical}
+
+        />
+
+        <Pressable
+          style={styles.buttonUpdate}
+          onPress={() => {
+            updatePlayer();
+          }}
+        >
+          <Text>Update Player</Text>
+        </Pressable>
+      </View>
     </ScrollView>
   );
 };

@@ -161,7 +161,7 @@ function App() {
         name="AddPlayers"
         component={AddPlayers}
         options={{
-          headerTitle: () => <Header name="AddPlayers" />,
+          headerTitle: () => <Header name="Add New Player" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
