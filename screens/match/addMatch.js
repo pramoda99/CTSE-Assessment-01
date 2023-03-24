@@ -9,6 +9,7 @@ import {
   Keyboard,
   Pressable,
   ScrollView,
+  Picker
 } from "react-native";
 import DatePicker from 'react-native-datepicker';
 // import TimePicker from 'react-native-simple-time-picker';
@@ -130,17 +131,17 @@ const AddMatch = () => {
             autoCapitalize="none"
           />
 
-          <Text style={[{ fontWeight: 'bold' }, styles]}>Tournament</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Tournament "
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(tournament) => setAddTournament(tournament)}
-            value={addTournament}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-
-          />
+      <Text style={[{ fontWeight: 'bold' }, styles]}>Tournament</Text>
+      <Picker
+        selectedValue={addTournament}
+        onValueChange={(tournament) => setAddTournament(tournament)}
+        style={styles.input}
+      >
+        <Picker.Item style={styles.input} label="Friendly Match" value="Friendly Match" />
+        <Picker.Item style={styles.input} label="League" value="League" />
+        <Picker.Item style={styles.input} label="Cup Match" value="Cup Match" />
+        <Picker.Item style={styles.input} label="Cup Final" value="Cup Final" />
+      </Picker>
 
           <Text style={[{ fontWeight: 'bold' }, styles]}>Date</Text>
           <DatePicker
