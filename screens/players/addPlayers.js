@@ -184,10 +184,10 @@ const AddPlayers = () => {
             autoCapitalize="none"
           />
 
-          <Text style={[{ fontWeight: 'bold' }, styles]}>Jercy No</Text>
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Jersey No</Text>
           <TextInput
             style={styles.input}
-            placeholder="Jercy No "
+            placeholder="jersey No "
             placeholderTextColor="#aaaaaa"
             onChangeText={(height) => {
               if (isNaN(height)) {

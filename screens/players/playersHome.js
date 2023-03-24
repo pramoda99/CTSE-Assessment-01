@@ -185,7 +185,7 @@ const PlayersHome = () => {
                   <View style={styles.noteView}>
                       <Text style={styles.title}>{item.pName}</Text>
                       <Text style={styles.subtitle}>Position: {item.position}</Text>
-                      <Text style={styles.subtitle}>Jercy No: {item.height}</Text>
+                      <Text style={styles.subtitle}>Jersey No: {item.height}</Text>
                       <Text style={styles.subtitle}>Goals: {item.goals}</Text>
                       <Text style={styles.subtitle}>Assists: {item.assists}</Text>
                       <Text style={styles.subtitle}>Clean Sheets: {item.sheets}</Text>

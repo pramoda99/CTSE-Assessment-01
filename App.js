@@ -209,7 +209,7 @@ function App() {
         name="AddSquad"
         component={AddSquad}
         options={{
-          headerTitle: () => <Header name="AddSquad" />,
+          headerTitle: () => <Header name="Create New Squad" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -225,7 +225,7 @@ function App() {
         name="DetailSquad"
         component={DetailSquad}
         options={{
-          headerTitle: () => <Header name="DetailSquad" />,
+          headerTitle: () => <Header name="Update Squad" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -241,7 +241,7 @@ function App() {
         name="SquadHome"
         component={SquadHome}
         options={{
-          headerTitle: () => <Header name="SquadHome" />,
+          headerTitle: () => <Header name="Squads" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,

@@ -86,7 +86,7 @@ const DetailPlayers = ({ route }) => {
 
           />
 
-          <Text style={[{ fontWeight: 'bold' }, styles]}>Jercy No</Text>
+          <Text style={[{ fontWeight: 'bold' }, styles]}>Jersey No</Text>
           <TextInput
             style={styles.textField}
             onChangeText={onChangeHeightText}
