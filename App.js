@@ -112,7 +112,7 @@ function App() {
         name="AddMatch"
         component={AddMatch}
         options={{
-          headerTitle: () => <Header name="AddMatch" />,
+          headerTitle: () => <Header name="Add New Match" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -128,7 +128,7 @@ function App() {
         name="DetailMatch"
         component={DetailMatch}
         options={{
-          headerTitle: () => <Header name="DetailMatch" />,
+          headerTitle: () => <Header name="Update Match Details" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -144,7 +144,7 @@ function App() {
         name="MatchHome"
         component={MatchHome}
         options={{
-          headerTitle: () => <Header name="MatchHome" />,
+          headerTitle: () => <Header name="Matches" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,

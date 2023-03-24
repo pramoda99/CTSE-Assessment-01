@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 20,
-
+  },
     image: {
       width: 120,
       height: 120,
@@ -400,5 +400,9 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       padding: 10,
     },
-  },
+
+    error: {
+      color: 'red',
+    },
+  
 });
