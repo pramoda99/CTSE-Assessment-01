@@ -171,34 +171,34 @@ import {
   
                   <View style={styles.innerContainer}>
                   <Text style={styles.itemHeading}>
-                    {item.title}
+                  <Text>Title : </Text>{item.title}
                     </Text>
                     <Text style={styles.itemHeading}>
-                     {item.tournament}
+                    <Text>Tournament : </Text> {item.tournament}
                      </Text>
                      <Text style={styles.itemHeading}>
-                      {item.date }
+                     <Text>Date : </Text>{item.date }
                       </Text>
                       <Text style={styles.itemHeading}>
-                       {item.kick}
+                      <Text>Kick off : </Text> {item.kick}
                        </Text>
                        <Text style={styles.itemHeading}>
-                        {item.our}
+                       <Text>Our Score : </Text> {item.our}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.opponent}
+                  <Text>Opponent Score : </Text>   {item.opponent}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.result}
+                  <Text>Result : </Text>    {item.result}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.sheets}
+                  <Text>Score Sheet : </Text> {item.sheets}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.pom}
+                  <Text>Player of the Match : </Text>     {item.pom}
                   </Text>
                   <Text style={styles.itemHeading}>
-                        {item.rating}
+                  <Text>Manager Ratings : </Text>   {item.rating}
                   </Text>
                   </View>
                 </Pressable>
@@ -221,7 +221,7 @@ import {
       margin: 5,
       marginHorizontal: 10,
       flexDirection: "row",
-      alignItems: "center",
+      alignItems: "flex-start",
       shadowColor: "blue",
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.8,
@@ -229,7 +229,7 @@ import {
       elevation: 7,
     },
     innerContainer: {
-      alignItems: "center",
+      alignItems: "flex-start",
       flexDirection: "column",
       marginLeft: 45,
     },

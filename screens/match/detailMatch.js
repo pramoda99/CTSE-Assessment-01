@@ -51,9 +51,9 @@ const DetailMatch = ({ route }) => {
     <View style={styles.container}>
      
 
-<Text style={styles.title}>Update Matches</Text>
+<Text style={styles.title}>Update Match Details</Text>
 
-
+<Text>Title</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeTitle}
@@ -62,6 +62,7 @@ const DetailMatch = ({ route }) => {
       
     />
 
+<Text>Tournament</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeTournament}
@@ -70,7 +71,9 @@ const DetailMatch = ({ route }) => {
       textContentType="number"
     /> 
 
+<Text>Date</Text>
 <DatePicker
+style={styles.inputDate}
        mode="date" //The enum of date, datetime and time
            placeholder="select date"
            format="DD-MM-YYYY"
@@ -95,6 +98,7 @@ const DetailMatch = ({ route }) => {
       
     /> 
 
+<Text>Kick off</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeKick}
@@ -102,6 +106,7 @@ const DetailMatch = ({ route }) => {
       
     />
 
+<Text>Our Score</Text>
 <TextInput
       style={styles.textField}
       onChangeText={onChangeOur}
@@ -109,6 +114,7 @@ const DetailMatch = ({ route }) => {
       
     />
 
+<Text>Opponent Score</Text>   
 <TextInput
       style={styles.textField}
       onChangeText={onChangeOpponent}
@@ -116,6 +122,7 @@ const DetailMatch = ({ route }) => {
       
     />
 
+<Text>Result</Text>  
 <TextInput
       style={styles.textField}
       onChangeText={onChangeResult}
@@ -123,6 +130,7 @@ const DetailMatch = ({ route }) => {
       
     />
 
+<Text>Score Sheet</Text>    
 <TextInput
       style={styles.textField}
       onChangeText={onChangeSheets}
@@ -130,6 +138,7 @@ const DetailMatch = ({ route }) => {
       
     />
 
+<Text>Player of the Match</Text>
 <TextInput
               style={styles.textField}
               onChangeText={onChangePom}
@@ -137,6 +146,7 @@ const DetailMatch = ({ route }) => {
               
             />
 
+<Text>Manager Ratings</Text>
 <TextInput
               style={styles.textField}
               onChangeText={onChangeRating}
@@ -176,7 +186,24 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 
+  inputDate:{
+    width: "100%",
+    fontSize: 15,
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+    color: "#000000",
+    backgroundColor: "#e0e0e0",
+  },
+
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 24,
+  },
+  
   buttonUpdate: {
+
     marginTop: 25,
     alignItems: "center",
     justifyContent: "center",
