@@ -49,8 +49,8 @@ const Home = () => {
         >
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>
             Hello , {name.firstname}
-            <br></br>
-            <br></br>
+            {/* <br></br>
+            <br></br> */}
             🤾‍♂️ ⚽ Welcome to the Football manager - 23 ⚽   🤾‍♂️
 
 
@@ -123,11 +123,12 @@ const Home = () => {
           </TouchableOpacity>
         </View>
 
-        <br></br>
+        {/* <br></br>
 
         <br></br>
 
-        <br></br>
+        <br></br> */}
+
 <view
  style={{ margin: 10, alignItems: "center", justifyContent: "center" }}
  >
