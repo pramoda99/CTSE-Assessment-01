@@ -48,9 +48,15 @@ const Register = () => {
   };
   return (
     <View style={styles.container}>
+         <br></br>
+         <br></br>
       <Text style={{ fontWeight: "bold", fontSize: 23 }}>
         Register Here..!!
       </Text>
+
+      <br></br>
+
+⚽⚽⚽
       <View style={{ marginTop: 40 }}>
         <TextInput
           style={styles.textInput}
@@ -96,7 +102,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 10,
+    backgroundColor: "#ADD8E6",
   },
   textInput: {
     paddingTop: 20,
@@ -117,4 +124,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 50,
   },
+  
 });
