@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     marginLeft: 14,
   },
   addButton: {
-    width: '80%',
+    width: '100%',
     height: 50,
     backgroundColor: '#007bff',
     alignItems: 'center',
