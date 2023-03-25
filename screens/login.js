@@ -24,10 +24,10 @@ const Login = () => {
   return (
     
     <View style={styles.container}>
-      <br></br>
-      <br></br>
+      {/* <br></br>
+      <br></br> */}
       <Text style={{ fontWeight: "bold", fontSize: 26 , fontStyles:"italic"}}>Login</Text>
-      <br></br>
+      {/* <br></br> */}
 
       ⚽⚽⚽
       <View style={{ marginTop: 40 }}>
