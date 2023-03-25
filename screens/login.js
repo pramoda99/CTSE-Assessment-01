@@ -22,8 +22,14 @@ const Login = () => {
     }
   };
   return (
+    
     <View style={styles.container}>
-      <Text style={{ fontWeight: "bold", fontSize: 26 }}>Log in</Text>
+      <br></br>
+      <br></br>
+      <Text style={{ fontWeight: "bold", fontSize: 26 , fontStyles:"italic"}}>Login</Text>
+      <br></br>
+
+      ⚽⚽⚽
       <View style={{ marginTop: 40 }}>
         <TextInput
           style={styles.textInput}
@@ -65,7 +71,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 10,
+    backgroundColor: "#ADD8E6",
+    // padding: 5,
+    // borderRadius: 15,
+    // margin: 5,
+    // marginHorizontal: 10,
+    // flexDirection: "row",
+    // alignItems: "center",
+    // shadowColor: "blue",
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
+    // elevation: 7,
   },
   textInput: {
     paddingTop: 20,
