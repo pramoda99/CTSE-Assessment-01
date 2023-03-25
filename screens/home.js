@@ -39,25 +39,27 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+
+
+
+      
       <View style={{ flex: 1 }}>
         <View
-          style={{ margin: 10, alignItems: "center", justifyContent: "center" }}
+          style={{ margin: 10, alignItems: "left", justifyContent: "center" }}
         >
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>
             Hello , {name.firstname}
+            <br></br>
+            <br></br>
+            🤾‍♂️ ⚽ Welcome to the Football manager - 23 ⚽   🤾‍♂️
+
+
+
+          
           </Text>
 
 
-          <TouchableOpacity
-            onPress={() => {
-              firebase.auth().signOut();
-            }}
-            style={styles.button}
-          >
-
-
-            <Text style={{ fontSize: 22, fontWeight: "bold" }}>Sign out</Text>
-          </TouchableOpacity>
+        
         </View>
 
 
@@ -71,6 +73,14 @@ const Home = () => {
             <Text style={styles.buttonText}>Players</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity
+            style={styles.addButton1}
+             onPress={() => navigation.navigate("PlayersHome")}
+          >
+            <Text style={styles.buttonText}></Text>
+          </TouchableOpacity>
+       
+
        
        
           <TouchableOpacity
@@ -80,12 +90,30 @@ const Home = () => {
             <Text style={styles.buttonText}>Squad</Text>
           </TouchableOpacity>
 
+
+          <TouchableOpacity
+            style={styles.addButton1}
+             onPress={() => navigation.navigate("PlayersHome")}
+          >
+            <Text style={styles.buttonText}></Text>
+          </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => navigation.navigate("TrainingHome")}
           >
             <Text style={styles.buttonText}>Training</Text>
           </TouchableOpacity>
+
+
+
+          <TouchableOpacity
+            style={styles.addButton1}
+             onPress={() => navigation.navigate("PlayersHome")}
+          >
+            <Text style={styles.buttonText}></Text>
+          </TouchableOpacity>
+
 
           <TouchableOpacity
             style={styles.addButton}
@@ -94,6 +122,27 @@ const Home = () => {
             <Text style={styles.buttonText}>Match</Text>
           </TouchableOpacity>
         </View>
+
+        <br></br>
+
+        <br></br>
+
+        <br></br>
+<view
+ style={{ margin: 10, alignItems: "center", justifyContent: "center" }}
+ >
+<TouchableOpacity
+            onPress={() => {
+              firebase.auth().signOut();
+            }}
+            style={styles.button}
+          >
+
+
+            <Text style={{ fontSize: 22, fontWeight: "bold" }}>Sign out</Text>
+          </TouchableOpacity>
+</view>
+
       </View>
     </SafeAreaView>
   );
@@ -103,8 +152,8 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#e5e5e5",
-    padding: 15,
+    backgroundColor: "#ADD8E6",
+    padding: 5,
     borderRadius: 15,
     margin: 5,
     marginHorizontal: 10,
@@ -120,6 +169,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     marginLeft: 45,
+    // marginRight: 45,
   },
 
   itemHeading: {
@@ -159,7 +209,15 @@ const styles = StyleSheet.create({
     height: 47,
     borderRadius: 5,
     backgroundColor: "#788eec",
-    width: 80,
+    width: 100,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  addButton1: {
+    height: 47,
+    borderRadius: 5,
+    backgroundColor: "ADD8E6",
+    width: 10,
     alignItems: "center",
     justifyContent: "center",
   },

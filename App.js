@@ -3,10 +3,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { firebase } from "./config";
 
+import { View } from 'react-native';
+
 import Login from "./screens/login";
 import Register from "./screens/register";
 import Header from "./components/header";
 import Home from "./screens/home";
+import Body from "./components/footer";
 
 // match component..........................................
 import AddMatch from "./screens/match/addMatch";
@@ -30,9 +33,23 @@ import TrainingHome from "./screens/training/trainingHome";
 
 const Stack = createStackNavigator();
 
+
+
+
 function App() {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+
+
+  
+  // const App: () => Node = () => {
+  //   return (
+  //     <View>
+  //       <BackgroundImg />
+  //     </View>
+  //   );
+  // };
+  
 
   //Handle user state changes
   function onAuthStateChanged(user) {
@@ -49,6 +66,11 @@ function App() {
 
   if (!user) {
     return (
+
+
+
+
+      
       <Stack.Navigator>
         <Stack.Screen
           name="Login"
@@ -63,7 +85,14 @@ function App() {
               shadowColor: "#000",
               elevation: 25,
             },
+            BodyStyle:{
+              backgroundColor: "#00e47a"
+            },
+            Footer:{
+              backgroundColor: "#00e47a"
+            }
           }}
+          
         />
 
 
@@ -91,13 +120,15 @@ function App() {
 
   return (
 
-
+// backgroundColor:"blue";
     
     <Stack.Navigator
     // screenOptions={{
     //   headerShow: false,
     // }}
     >
+
+      
       <Stack.Screen
         name="Home"
         component={Home}
@@ -312,6 +343,9 @@ function App() {
         }}
       />
     </Stack.Navigator>
+
+
+
   );
 }
 
