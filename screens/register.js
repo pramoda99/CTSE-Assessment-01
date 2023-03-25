@@ -48,13 +48,13 @@ const Register = () => {
   };
   return (
     <View style={styles.container}>
-         <br></br>
-         <br></br>
+         {/* <br></br>
+         <br></br> */}
       <Text style={{ fontWeight: "bold", fontSize: 23 }}>
         Register Here..!!
       </Text>
-
-      <br></br>
+{/* 
+      <br></br> */}
 
 ⚽⚽⚽
       <View style={{ marginTop: 40 }}>
