@@ -248,11 +248,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 15,
+    width:100,
   },
   icon: {
     marginTop: 5,
     fontSize: 20,
     marginLeft: 14,
+    width:100,
   },
   addButton: {
     height: 47,
