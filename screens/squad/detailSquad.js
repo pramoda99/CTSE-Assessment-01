@@ -22,6 +22,7 @@ const DetailSquad = ({ route }) => {
       squadRef
         .doc(route.params.item.id)
         .update({
+
           sName: textSName,
           formation: textFormation,
           fSquad: textFSquad,
@@ -36,6 +37,7 @@ const DetailSquad = ({ route }) => {
         .then(() => {
           navigation.navigate("SquadHome");
         })
+
         .catch((error) => {
           alert(error.message);
         });
@@ -49,6 +51,7 @@ const DetailSquad = ({ route }) => {
         <TextInput
           style={styles.textField}
           onChangeText={onChangeSNameText}
+
           value={textSName}
           editable={false}
 
@@ -62,6 +65,7 @@ const DetailSquad = ({ route }) => {
 
           textContentType="number"
         />
+        
         <Text style={[{ fontWeight: 'bold' }, styles]}>Captain (jersey no)</Text>
         <TextInput
           style={styles.textField}

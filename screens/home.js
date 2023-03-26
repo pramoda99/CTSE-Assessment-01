@@ -20,12 +20,14 @@ const Home = () => {
   const navigation = useNavigation();
   useEffect(() => {
     firebase
+
       .firestore()
       .collection("users")
       .doc(firebase.auth().currentUser.uid)
       .get()
       .then((snapshot) => {
         if (snapshot.exists) {
+          
           setName(snapshot.data());
         } else {
           console.log("User not found");
