@@ -20,6 +20,7 @@ const DetailSquad = ({ route }) => {
   const updateSquad = () => {
     if (textSName && textSName.length > 0) {
       squadRef
+
         .doc(route.params.item.id)
         .update({
           sName: textSName,
@@ -48,6 +49,7 @@ const DetailSquad = ({ route }) => {
       <Text style={styles.title}>Update Squad</Text>
       
       <TextInput
+
       style={styles.textField}
       onChangeText={onChangeSNameText}
       value={textSName}
@@ -61,6 +63,7 @@ const DetailSquad = ({ route }) => {
       value={textFormation}
       
       textContentType="number"
+
     /> 
 
 <TextInput
@@ -74,6 +77,7 @@ const DetailSquad = ({ route }) => {
       style={styles.textField}
       onChangeText={onChangeAttackingText}
       value={textAttacking}
+
       
     />
 
@@ -91,6 +95,7 @@ const DetailSquad = ({ route }) => {
               onChangeText={onChangeCaptainText}
               value={textCaptain}
               
+
             />
 
 <TextInput
@@ -105,6 +110,7 @@ const DetailSquad = ({ route }) => {
               onChangeText={onChangePTakerText}
               value={textPTaker}
               
+
             />
 {/* 
 <Text style={styles.title}>Skills</Text> */}
@@ -118,6 +124,7 @@ const DetailSquad = ({ route }) => {
 
 <TextInput
               style={styles.textField}
+
               onChangeText={onChangeRCTakerText}
               value={textRCTaker}
               
@@ -131,6 +138,7 @@ const DetailSquad = ({ route }) => {
       >
         <Text>Update Squad</Text>
       </Pressable>
+
     </View>
     </ScrollView>
   );
@@ -145,6 +153,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
 
+
   textField: {
     marginBottom: 10,
     padding: 10,
@@ -158,6 +167,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
     alignItems: "center",
     justifyContent: "center",
+
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
@@ -165,3 +175,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#0de065",
   },
 });
+
