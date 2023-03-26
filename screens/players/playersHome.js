@@ -16,6 +16,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+
 const PlayersHome = () => {
   const [name, setName] = useState("");
   const [players, setPlayers] = useState([]);
@@ -36,12 +37,14 @@ const PlayersHome = () => {
   const navigation = useNavigation();
   useEffect(() => {
     firebase
+
       .firestore()
       .collection("users")
       .doc(firebase.auth().currentUser.uid)
       .get()
       .then((snapshot) => {
         if (snapshot.exists) {
+
           setName(snapshot.data());
         } else {
           console.log("User not found");
@@ -87,6 +90,7 @@ const PlayersHome = () => {
       .catch((error) => {
         alert(error);
       });
+
   };
 
   const addPlayer = () => {
@@ -133,6 +137,7 @@ const PlayersHome = () => {
   };
 //   console(item.physical);
   return (
+
     <ScrollView>
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1 }}>
@@ -164,6 +169,7 @@ const PlayersHome = () => {
         <FlatList
           data={players}
           numColumns={1}
+
           renderItem={({ item }) => (
             <View>
               <Pressable style={styles.container}>
@@ -206,6 +212,7 @@ const PlayersHome = () => {
                   </Text>
                   <Text style={styles.itemHeading}>
                         {item.goals}
+
                   </Text>
                   <Text style={styles.itemHeading}>
                         {item.assists}
@@ -237,6 +244,7 @@ const PlayersHome = () => {
       </View>
     </SafeAreaView>
     </ScrollView>
+
   );
 };
 
@@ -265,6 +273,7 @@ const styles = StyleSheet.create({
 
   itemHeading: {
     fontWeight: "bold",
+
     fontSize: 18,
     marginRight: 22,
   },
@@ -293,6 +302,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginTop: 5,
+
     fontSize: 20,
     marginLeft: 14,
   },
@@ -315,3 +325,4 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
+
