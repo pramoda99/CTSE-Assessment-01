@@ -12,6 +12,7 @@ const DetailTraining = ({ route }) => {
   const [textStriker, onChangeStrikerText] = useState(route.params.item.striker);
   const [textMidfielder, onChangeMidfielderText] = useState(route.params.item.midfielder);
   const [textDefender, onChangeDefenderText] = useState(route.params.item.defender);
+
   const [textGoalkeeper, onChangeGoalkeeperText] = useState(route.params.item.goalkeeper);
   const [textRating, onChangeRatingText] = useState(route.params.item.rating);
   
@@ -27,6 +28,7 @@ const DetailTraining = ({ route }) => {
           focus:textFocus,
           session:textSession,
           striker:textStriker,
+
           midfielder:textMidfielder,
           defender:textDefender,
           goalkeeper:textGoalkeeper,
@@ -40,6 +42,7 @@ const DetailTraining = ({ route }) => {
         });
     }
   };
+
 
   return (
     <ScrollView>
@@ -57,6 +60,7 @@ const DetailTraining = ({ route }) => {
       style={styles.textField}
       onChangeText={onChangeTTimeText}
       value={textTTime}
+
       
       textContentType="number"
     /> 
@@ -71,6 +75,7 @@ const DetailTraining = ({ route }) => {
 <TextInput
       style={styles.textField}
       onChangeText={onChangeSessionText}
+
       value={textSession}
       
  
@@ -83,6 +88,7 @@ const DetailTraining = ({ route }) => {
       
       textContentType="number"
     /> 
+
 
 <TextInput
       style={styles.textField}
@@ -101,6 +107,7 @@ const DetailTraining = ({ route }) => {
 
 <TextInput
       style={styles.textField}
+
       onChangeText={onChangeGoalkeeperText}
       value={textGoalkeeper}
       
@@ -113,6 +120,7 @@ const DetailTraining = ({ route }) => {
       value={textRating}
       
     /> 
+
 
       <Pressable
         style={styles.buttonUpdate}
@@ -142,6 +150,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#000000",
     backgroundColor: "#e0e0e0",
+
     borderRadius: 5,
   },
 
@@ -155,4 +164,5 @@ const styles = StyleSheet.create({
     elevation: 10,
     backgroundColor: "#0de065",
   },
+  
 });
