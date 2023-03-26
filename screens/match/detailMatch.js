@@ -20,6 +20,7 @@ const DetailMatch = ({ route }) => {
   const [textRating, onChangeRating] = useState(route.params.item.rating);
   const navigation = useNavigation();
 
+
   const updateMatch = () => {
     if (textTitle && textTitle.length > 0) {
       matchRef
@@ -37,18 +38,22 @@ const DetailMatch = ({ route }) => {
           rating:textRating,
 
         })
+
         .then(() => {
           navigation.navigate("MatchHome");
         })
+
         .catch((error) => {
           alert(error.message);
         });
+
     }
   };
 
   return (
     <ScrollView>
     <View style={styles.container}>
+
      
 
 <Text style={styles.title}>Update Matches</Text>
@@ -58,8 +63,7 @@ const DetailMatch = ({ route }) => {
       style={styles.textField}
       onChangeText={onChangeTitle}
       value={textTitle}
-      
-      
+            
     />
 
 <TextInput
@@ -94,6 +98,7 @@ const DetailMatch = ({ route }) => {
       date={textDate}
       
     /> 
+
 
 <TextInput
       style={styles.textField}
@@ -155,6 +160,7 @@ const DetailMatch = ({ route }) => {
       </Pressable>
     </View>
     </ScrollView>
+
   );
 };
 
@@ -165,6 +171,7 @@ const styles = StyleSheet.create({
     marginTop: 80,
     marginLeft: 15,
     marginRight: 15,
+
   },
 
   textField: {
@@ -181,6 +188,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
+    
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 10,
